@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  //BASE_URL: 'http://124.43.209.67:8006'
+  BASE_URL: 'http://client.cooplife.lk:8006'
+  //BASE_URL: 'http://localhost:8006'
 };
 
 /*

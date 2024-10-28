@@ -1,0 +1,50 @@
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+}
+.card {
+    margin-top: -200px;
+    /* margin-bottom: -150px; */
+    border: none;
+    /* width: 370px; */
+    padding: 40px;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%, 50%);
+    background: #299e56(81, 76, 158);
+    background: linear-gradient(
+      90deg,
+      rgb(49, 112, 41) 0%,
+      rgb(78, 205, 74) 100%
+    );
+  }
+  
+  .card h1,
+  h6{
+      color: whitesmoke;
+      
+  }
+  
+  label{
+      color: whitesmoke;
+  }
+  
+  .imgs {
+    height: 100px;
+    width:  100px;
+  }
+  
+  .btn{
+    width:  300px;
+  
+  }
+  
+
+  
+  
+  
+
+  
+  
+  
+  
