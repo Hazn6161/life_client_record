@@ -272,7 +272,7 @@ export class EmployeeComponent implements OnInit {
         this.paymentForm.controls['policyType'].setValue(res.coverType);
         this.paymentForm.controls['policyStatus'].setValue(res.polStatus);
         this.paymentForm.controls['mobileNo'].setValue(res.mobileNo);
-        this.paymentForm.controls['mobileNo2'].setValue(res.mobileNo);
+        //this.paymentForm.controls['mobileNo2'].setValue(res.mobileNo);
 
         this.policyPayments = res.policyPaymentResponses;
 
@@ -299,6 +299,8 @@ export class EmployeeComponent implements OnInit {
 
   addPolicyPayment() {
     console.log();
+
+
     
     if (!(this.paymentForm.get('paidAmount')?.value == this.paymentForm.get('confirmpaidAmount')?.value)) {
       Swal.fire({
