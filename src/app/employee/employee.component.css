@@ -150,4 +150,15 @@ thead {
 
   }
 
+.btn-dk{
+	background-color: rgb(255, 90, 10);
+	-webkit-text-fill-color: #f5f5f5;
+	border:  rgb(222, 96, 15);
+}
+
+.btn-dk:hover {
+    background-color:  rgb(222, 96, 15);
+}
+
+
  

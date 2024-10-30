@@ -26,7 +26,7 @@
     </div>
     <!-- <h6 class="pull-right" style="color: white;">{{userName}}</h6> -->
     <div class="container-fluid">
-      <h2 style="color: aliceblue"><img class="imgs " src="https://i.ibb.co/NSpgrS1/life.png">&nbsp;Prospective Client's
+      <h2 style="color: aliceblue"><img class="imgs" src="https://i.ibb.co/NSpgrS1/life.png">&nbsp;Prospective Client's
         Record</h2>
       <div class="">
         <button routerLink="/change-password" class="btn btn-warning me-2 mb-2"><i
@@ -49,8 +49,8 @@
       (click)="addClick()"><i class="bi bi-journals me-2"></i>New Business </button>
     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-info me-2 mb-2"
       (click)="addClick()"><i class="bi-coin me-2"></i>Make a Payment</button>
-    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-dark me-2 mb-2"
-      (click)="addClick()"><i class="bi-coin me-2"></i>My Collection</button>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal4" class="btn btn-dk me-2 mb-2"
+      (click)="addClick()"><i class="bi-collection me-2"></i>My Collections</button>
   </div>
 
   <div class="mt-3">
@@ -605,6 +605,161 @@
       </div>
     </div>
   </div>
+
+
+  <!-- My Collection -->
+  <div class="modal fade bd-example-modal-lg" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bolder" id="exampleModal4"><i class="bi bi-collection me-3"></i>My Collections Summary</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="">
+            <img class="workimag mt-5 mb-5" src="/assets/5695859.png">
+          </div>
+          <!-- <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label class="form-label">From Date</label>
+              <input type="date" class="form-control" id="exampleInputPassword1" formControlName="presentInsurer">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">To Date</label>
+              <input type="date" class="form-control" id="exampleInputPassword1" formControlName="presentInsurer">
+            </div>
+            <div class="d-grid gap-2">
+              <button type="button" class="btn btn-primary mb-3">Search</button>
+            </div>
+            <div class="table-responsive" style="float: left; width:100%;">
+              <h4 class="text-center">Region Summary</h4>
+              <table class="table" id="RecipeIngredientTable2">
+                <thead>
+                  <tr>
+                    <th scope="col">Policy Type</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Paid Date</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody-scroll">
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">FIRST PREMIUM</td>
+                    <td class="text-center">200000</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">2024-08-27</td>
+                    <td class="text-center">Paid</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </form> -->
+        </div>
+        <!-- <div class="modal-footer">
+          <button *ngIf="!isEdit" type="button" class="btn btn-success">
+            Download
+          </button>
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
