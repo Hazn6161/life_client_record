@@ -73,9 +73,9 @@ export class LoginComponent implements OnInit {
     },
       error => {
         Swal.fire({
-          icon: 'error',
-          title: 'User not found',
-          text: 'Something went wrong!',
+          //icon: 'error',
+          title: 'Please Use the Username to the Password',
+          //text: 'Something went wrong!',
           footer: 'Please Contact Us - 0710233087'
         })
       });
