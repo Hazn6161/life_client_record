@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
     },
       error => {
         Swal.fire({
-          //icon: 'error',
+          icon: 'error',
           title: 'කරුණාකර මුරපදය සඳහා පරිශීලක නාමය භාවිතා කරන්න. கடவுச்சொல்லுக்கு பயனர் பெயரைப் பயன்படுத்தவும்.',
           //text: 'Please Use the Username to the Password',
           footer: 'Please Contact Us - 0710233087'
