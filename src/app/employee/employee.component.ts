@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-employee',
@@ -27,15 +28,20 @@ export class EmployeeComponent implements OnInit {
   id: any;
   policyNo: any;
   policyPayments: any;
+  changePassword: any;
+
 
   spinner1 = 'sp1';
   spinner2 = 'sp2';
+
+  @ViewChild('myModalClose') modalClose;
 
 
   constructor(
     private formBuilder: UntypedFormBuilder,
     private api: ApiService,
-    private spinner: NgxSpinnerService){ }
+    private router: Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
 
@@ -77,8 +83,8 @@ export class EmployeeComponent implements OnInit {
       cusNic: ['',],
       policyType: ['', Validators.required],
       policyStatus: ['', Validators.required],
-      mobileNo: [' ', ],
-      mobileNo2: ['',Validators.required],
+      mobileNo: [' ',],
+      mobileNo2: ['', Validators.required],
       paidAmount: ['', Validators.required],
       confirmpaidAmount: ['', Validators.required],
       receiptsCat: ['', Validators.required]
@@ -91,6 +97,9 @@ export class EmployeeComponent implements OnInit {
     this.branchId = user.branch;
     this.Percode = user.percode;
   }
+
+  password1;
+  show: boolean = false;
 
 
   addClick() {
@@ -301,7 +310,7 @@ export class EmployeeComponent implements OnInit {
     console.log();
 
 
-    
+
     if (!(this.paymentForm.get('paidAmount')?.value == this.paymentForm.get('confirmpaidAmount')?.value)) {
       Swal.fire({
         icon: 'error',
@@ -315,60 +324,60 @@ export class EmployeeComponent implements OnInit {
       return
     }
 
-    if (this.paymentForm.get('mobileNo2')?.value.match(/\d/g).length===10){
-    
-    
-    if (this.paymentForm.get('paidAmount')?.value>0) {
-      this.spinner.show('sp2');
+    if (this.paymentForm.get('mobileNo2')?.value.match(/\d/g).length === 10) {
 
-    let user = JSON.parse(localStorage.getItem('user') || '');
 
-    let policyPay = {
+      if (this.paymentForm.get('paidAmount')?.value > 0) {
+        this.spinner.show('sp2');
 
-      "createdBy": user.percode,
-      "cusAddress": this.paymentForm.value.payAddress,
-      "cusName": this.paymentForm.value.policyHolder,
-      // "dueDate": "2024-08-29T12:30:09.321Z",
-      "mobile": this.paymentForm.value.mobileNo ? this.paymentForm.value.mobileNo : "",
-      "modifiedBy": user.percode,
-      "newMobile": this.paymentForm.value.mobileNo2,
-      "nic": this.paymentForm.value.cusNic,
-      // "paidDate": "2024-08-29T12:30:09.321Z",
-      "payment": this.paymentForm.value.paidAmount,
-      "policyNo": this.paymentForm.value.policyNo,
-      "receiptsCategory": this.paymentForm.value.receiptsCat,
-      //"receiptNo": "",
-      "status": "ACTIVE",
-      "statusType": "Paid",
-      "type": this.paymentForm.value.policyType
+        let user = JSON.parse(localStorage.getItem('user') || '');
 
-    }
+        let policyPay = {
 
-    this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
-      this.spinner.hide('sp2');
+          "createdBy": user.percode,
+          "cusAddress": this.paymentForm.value.payAddress,
+          "cusName": this.paymentForm.value.policyHolder,
+          // "dueDate": "2024-08-29T12:30:09.321Z",
+          "mobile": this.paymentForm.value.mobileNo ? this.paymentForm.value.mobileNo : "",
+          "modifiedBy": user.percode,
+          "newMobile": this.paymentForm.value.mobileNo2,
+          "nic": this.paymentForm.value.cusNic,
+          // "paidDate": "2024-08-29T12:30:09.321Z",
+          "payment": this.paymentForm.value.paidAmount,
+          "policyNo": this.paymentForm.value.policyNo,
+          "receiptsCategory": this.paymentForm.value.receiptsCat,
+          //"receiptNo": "",
+          "status": "ACTIVE",
+          "statusType": "Paid",
+          "type": this.paymentForm.value.policyType
 
-      Swal.fire(
-        'Payment Successfully',
-        'Good job !',
-        'success'
-      )
-      let ref = document.getElementById('cancel');
-      ref?.click();
-      this.paymentForm.reset();
-      this.policyPayments = null;
+        }
 
-    },error => {
-      this.spinner.hide('sp2');
-      Swal.fire({
-        icon: 'error',
-        title: 'Server Error',
-        text: 'Something went wrong!',
-        footer: 'Please Contact Us - 0710233087'
-      })
-    });
+        this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
+          this.spinner.hide('sp2');
 
-    } else {
-      //this.spinner.hide();
+          Swal.fire(
+            'Payment Successfully',
+            'Good job !',
+            'success'
+          )
+          let ref = document.getElementById('cancel');
+          ref?.click();
+          this.paymentForm.reset();
+          this.policyPayments = null;
+
+        }, error => {
+          this.spinner.hide('sp2');
+          Swal.fire({
+            icon: 'error',
+            title: 'Server Error',
+            text: 'Something went wrong!',
+            footer: 'Please Contact Us - 0710233087'
+          })
+        });
+
+      } else {
+        //this.spinner.hide();
         Swal.fire({
           icon: 'error',
           title: 'Amount is incorect ',
@@ -376,10 +385,10 @@ export class EmployeeComponent implements OnInit {
           //footer: 'Soryy'
           // footer: '<a href="">Why do I have this issue?</a>'
         })
-    }
+      }
 
     } else {
-    //this.spinner.hide();
+      //this.spinner.hide();
       Swal.fire({
         icon: 'error',
         title: 'Invalid Mobile no format',
@@ -388,7 +397,7 @@ export class EmployeeComponent implements OnInit {
         // footer: '<a href="">Why do I have this issue?</a>'
       })
     }
-  
+
 
   }
 
@@ -405,12 +414,79 @@ export class EmployeeComponent implements OnInit {
 
   }
 
-  restrictZero(event:any){
-    if(event.target.value.length === 0 && event.key === "0"){
+  restrictZero(event: any) {
+    if (event.target.value.length === 0 && event.key === "0") {
       event.preventDefault();
-   } 
+    }
   }
-  
+
+  changepassword() {
+
+    let user = JSON.parse(localStorage.getItem('user') || '');
+
+    let updatepassword = {
+      "id": user.id,
+      "bucode": user.bucode,
+      "percode": user.percode,
+      "name": user.name,
+      "soflevelcode": user.soflevelcode,
+      "sotdesc": user.sotdesc,
+      "branch": user.branch,
+      "contactno": user.contactno,
+      "overrider": user.overrider,
+      "address": user.address,
+      "brId": user.brId,
+      "regonid": user.regonid,
+      "zoneid": user.zoneid,
+      "pw": this.password1,
+      "status": user.status,
+
+
+    }
+
+    this.api.changepassword(updatepassword).subscribe((data: any) => {
+
+
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Password Changed Done',
+        showConfirmButton: false,
+        timer: 2000
+      })
+
+      this.modalClose.nativeElement.click();
+      this.password1 = null;
+
+      // let ref = document.getElementById('cancel');
+      // ref?.click();
+      // this.paymentForm.reset();
+      // this.policyPayments = null;
+
+      // setTimeout(() => {
+      //   this.router.navigate(['/employee'])
+      // }, 2000);
+
+
+
+    }, (err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'User not found',
+        text: 'Something went wrong!',
+        footer: 'Please Contact Us - 0710233087'
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+    });
+
+
+  }
+
+  showPassword() {
+    this.show = !this.show;
+  }
+
 
 }
 

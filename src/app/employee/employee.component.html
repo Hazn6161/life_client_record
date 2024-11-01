@@ -29,8 +29,10 @@
       <h2 style="color: aliceblue"><img class="imgs" src="https://i.ibb.co/NSpgrS1/life.png">&nbsp;Prospective Client's
         Record</h2>
       <div class="">
-        <button routerLink="/change-password" class="btn btn-warning me-2 mb-2"><i
-            class="bi bi-person-lock me-2"></i>Change Password</button>
+        <!-- <button routerLink="/change-password" class="btn btn-warning me-2 mb-2"><i
+            class="bi bi-person-lock me-2"></i>Change Password</button> -->
+        <button type="button" data-bs-toggle="modal" data-bs-target="#changepassword" class="btn btn-warning me-2 mb-2"
+          (click)="addClick()"><i class="bi-person-lock me-2"></i>Change Password</button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#contactusModal"
           class="btn btn-secondary me-2 mb-2" (click)="addClick()"><i class="bi bi-telephone me-2"></i>Contact
           Us</button>
@@ -117,35 +119,35 @@
                 formControlName="name">
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">NIC</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="nic">
+              <label class="form-label">NIC</label>
+              <input type="text" class="form-control" formControlName="nic">
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Address</label>
-              <textarea class="form-control" id="exampleInputPassword1" formControlName="address"></textarea>
+              <label class="form-label">Address</label>
+              <textarea class="form-control" formControlName="address"></textarea>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Mobile No</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="mobile">
+              <label class="form-label">Mobile No</label>
+              <input type="text" class="form-control" formControlName="mobile">
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Status</label>
-              <select type="text" class="form-control" id="exampleInputPassword1" formControlName="statusType">
+              <label class="form-label">Status</label>
+              <select type="text" class="form-control" formControlName="statusType">
                 <option>Married</option>
                 <option>Single</option>
               </select>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Spouse Age</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="spouseAge">
+              <label  class="form-label">Spouse Age</label>
+              <input type="text" class="form-control" formControlName="spouseAge">
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">No of Family Members</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="noOfFamilyMembers">
+              <label class="form-label">No of Family Members</label>
+              <input type="text" class="form-control" formControlName="noOfFamilyMembers">
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">No of Child</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="noOfChild">
+              <label class="form-label">No of Child</label>
+              <input type="text" class="form-control" formControlName="noOfChild">
             </div>
             <!-- <div class="mb-3">
               <input type="text" class="form-control" id="exampleInputPassword1" formControlName="familyDetails">
@@ -157,8 +159,8 @@
               <input type="text" class="form-control" id="exampleInputPassword1" formControlName="familyDetails">
             </div> -->
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Type of Insurance</label>
-              <select type="text" class="form-control" id="exampleInputPassword1" formControlName="typeOfInsurance">
+              <label  class="form-label">Type of Insurance</label>
+              <select type="text" class="form-control" formControlName="typeOfInsurance">
                 <option>Monthly</option>
                 <option>Quarterly</option>
                 <option>Half Yearly</option>
@@ -166,17 +168,17 @@
               </select>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Present Insurer</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="presentInsurer">
+              <label class="form-label">Present Insurer</label>
+              <input type="text" class="form-control" formControlName="presentInsurer">
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Monthly Income</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="monthlyIncome" />
+              <label class="form-label">Monthly Income</label>
+              <input type="text" class="form-control" formControlName="monthlyIncome" />
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label"></label>
-              <label for="exampleInputPassword1" class="form-label">Monthly Expences</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="monthlyExpences" />
+              <label class="form-label"></label>
+              <label class="form-label">Monthly Expences</label>
+              <input type="text" class="form-control" formControlName="monthlyExpences" />
             </div>
             <!-- <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label"></label>
@@ -189,9 +191,9 @@
                 <input type="text" class="form-control" id="exampleInputPassword1" formControlName="sumInsured" />
             </div> -->
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label"></label>
-              <label for="exampleInputPassword1" class="form-label">Remark</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="remark" />
+              <label class="form-label"></label>
+              <label class="form-label">Remark</label>
+              <input type="text" class="form-control" formControlName="remark" />
             </div>
             <!-- <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Test</label>
@@ -613,7 +615,8 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title fw-bolder" id="exampleModal4"><i class="bi bi-collection me-3"></i>My Collections Summary</h5>
+          <h5 class="modal-title fw-bolder" id="exampleModal4"><i class="bi bi-collection me-3"></i>My Collections
+            Summary</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -754,6 +757,62 @@
           </button>
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- change Password modal -->
+  <div class="modal fade bd-example-modal-lg" id="changepassword" tabindex="-1" aria-labelledby="changepasswordLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bolder"><i class="bi-person-lock me-3"></i>Change Password</h4>
+          <button type="button" #myModalClose class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="paymentForm">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <!-- <h1>Change Password</h1> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="row gy-3 gy-md-4 gy-lg-0 align-items-md-center">
+                <p class="text-center">Use the form below to change your password.</p>
+                <form method="post" id="passwordForm">
+                  <input [type]="show ? 'text' : 'password'" class="input-lg form-control" [(ngModel)]="password1"
+                    name="password1" placeholder="New Password" autocomplete="off">
+                  <div class="row">
+                    <div class="col-sm-6 mb-3"></div>
+                  </div>
+                  <div class="form-label mb-3">
+                    <input type="checkbox" (click)="showPassword()">&nbsp;&nbsp;Show Password
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button class="btn btn-success" (click)="changepassword()">Change
+                      Password</button>
+                  </div>
+                </form>
+              </div><!--/col-sm-6-->
+            </div><!--/row-->
+
+
+
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" (click)="clearForms()" class="btn btn-danger">
+            Clear
+          </button>
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button *ngIf="!isEdit" type="button" (click)="addPolicyPayment()" [disabled]="paymentForm.invalid"
+            class="btn btn-success">
+            Save
           </button>
         </div> -->
       </div>
