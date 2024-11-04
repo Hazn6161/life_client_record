@@ -307,7 +307,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   addPolicyPayment() {
-    console.log();
+    
 
 
 
