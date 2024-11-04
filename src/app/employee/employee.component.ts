@@ -18,7 +18,7 @@ export class EmployeeComponent implements OnInit {
   //employeeModelObj: EmployeeModel = new EmployeeModel();
   employeeData!: any;
   policyData!: any;
-  isEdit: boolean = false;
+  isEdit = false;
   isEditButtonNameAdd = 'Add';
   isEditButtonName = 'Update';
   username: any;
@@ -99,7 +99,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   password1;
-  show: boolean = false;
+  show = false;
 
 
   addClick() {

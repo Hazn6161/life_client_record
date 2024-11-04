@@ -20,7 +20,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   password1;
-  show: boolean = false;
+  show = false;
   
   changepassword() {
 
