@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en">
 <header>
   <meta name="viewpoint" content="width=device-width">
@@ -136,7 +137,7 @@
               </select>
             </div>
             <div class="mb-3">
-              <label  class="form-label">Spouse Age</label>
+              <label class="form-label">Spouse Age</label>
               <input type="text" class="form-control" formControlName="spouseAge">
             </div>
             <div class="mb-3">
@@ -157,7 +158,7 @@
               <input type="text" class="form-control" id="exampleInputPassword1" formControlName="familyDetails">
             </div> -->
             <div class="mb-3">
-              <label  class="form-label">Type of Insurance</label>
+              <label class="form-label">Type of Insurance</label>
               <select type="text" class="form-control" formControlName="typeOfInsurance">
                 <option>Monthly</option>
                 <option>Quarterly</option>
@@ -618,145 +619,59 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="">
+          <!-- <div class="">
             <img class="workimag mt-5 mb-5" src="/assets/5695859.png">
-          </div>
-          <!-- <form [formGroup]="formValue">
-            <div class="mb-3">
+          </div> -->
+          <form [formGroup]="collectionform">
+            <div class="d-grid  mb-3">
               <label class="form-label">From Date</label>
-              <input type="date" class="form-control" id="exampleInputPassword1" formControlName="presentInsurer">
+              <input type="date" class="form-control" formControlName="fromdate">
             </div>
             <div class="mb-3">
               <label class="form-label">To Date</label>
-              <input type="date" class="form-control" id="exampleInputPassword1" formControlName="presentInsurer">
+              <input type="date" class="form-control mb-4" formControlName="todate">
             </div>
-            <div class="d-grid gap-2">
-              <button type="button" class="btn btn-primary mb-3">Search</button>
+            <div class="d-grid gap-2 mb-2">
+              <button type="button" (click)="getByDaterange()" [disabled]="collectionform.invalid" class="btn btn-primary mb-3">Search</button>
             </div>
-            <div class="table-responsive" style="float: left; width:100%;">
-              <h4 class="text-center">Region Summary</h4>
-              <table class="table" id="RecipeIngredientTable2">
+            <div class="table-responsive" style="width:100%;">
+              <h4 class="text-center">Collection Summary</h4>
+              <table class="table table-responsive-sm" id="RecipeIngredientTable2">
                 <thead>
                   <tr>
-                    <th scope="col">Policy Type</th>
-                    <th scope="col">Payment</th>
-                    <th scope="col">Due Date</th>
-                    <th scope="col">Paid Date</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Policy No</th>
+                    <!-- <th scope="col">Receipt No</th> -->
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Collect Amount</th>
+                    <th scope="col">Collect Date</th>
                   </tr>
                 </thead>
-                <tbody class="tbody-scroll">
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
+                <tbody class="tbody-scroll text-dark" style="text-justify: auto;">
 
+                  <tr *ngFor="let collctionSum of collctionSums">
+                    <td class="text-justify">{{ collctionSum.policyNo }}</td>
+                    <!-- <td class="text-center">{{ collctionSum.receiptNo }}</td> -->
+                    <td class="text-justify">{{ collctionSum.cusName }}</td>
+                    <td class="text-center">{{ collctionSum.payment }}</td>
+                    <td class="text-justify">{{ collctionSum.createdDateTime | date: 'yyyy-MMM-dd hh:mm:ss'}}</td>
+                    <!-- <td class="text-center">{{ collctionSum.paidDate | date: 'yyyy-MMM-dd'}}</td> -->
+                  </tr>
                 </tbody>
               </table>
             </div>
-          </form> -->
+          </form>
         </div>
-        <!-- <div class="modal-footer">
-          <button *ngIf="!isEdit" type="button" class="btn btn-success">
+        <div class="modal-footer">
+          <!-- <button *ngIf="!isEdit" type="button" class="btn btn-success">
             Download
+          </button> -->
+          <button type="button" class="btn btn-danger" (click)="clearcollectionForms()" >
+            Clear
           </button>
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </button>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>

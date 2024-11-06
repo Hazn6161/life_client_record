@@ -15,6 +15,7 @@ import { ViewChild } from '@angular/core';
 export class EmployeeComponent implements OnInit {
   formValue!: UntypedFormGroup;
   paymentForm!: UntypedFormGroup;
+  collectionform!: UntypedFormGroup;
   //employeeModelObj: EmployeeModel = new EmployeeModel();
   employeeData!: any;
   policyData!: any;
@@ -29,6 +30,9 @@ export class EmployeeComponent implements OnInit {
   policyNo: any;
   policyPayments: any;
   changePassword: any;
+  fromdate: any;
+  todate: any;
+  collctionSums: any;
 
 
   spinner1 = 'sp1';
@@ -88,6 +92,13 @@ export class EmployeeComponent implements OnInit {
       paidAmount: ['', Validators.required],
       confirmpaidAmount: ['', Validators.required],
       receiptsCat: ['', Validators.required]
+
+    });
+
+    this.collectionform = this.formBuilder.group({
+
+      fromdate: ['', Validators.required],
+      todate: ['', Validators.required]
 
     });
 
@@ -302,14 +313,49 @@ export class EmployeeComponent implements OnInit {
           // footer: '<a href="">Why do I have this issue?</a>'
         })
       }
-
     });
   }
 
+  getByDaterange() {
+    let user = JSON.parse(localStorage.getItem('user') || '');
+    let fromdate = this.collectionform.value.fromdate;
+    let todate = this.collectionform.value.todate;
+
+    this.api.getByDaterange(user.percode, fromdate, todate).subscribe((res) => {
+
+      if (res && res.length > 0) {
+
+        this.collctionSums = res;
+
+        Swal.fire(
+          'Data Loading Done',
+          '',
+          'success'
+        );
+
+      }
+      else {
+        this.spinner.hide('sp1');
+        Swal.fire({
+          icon: 'error',
+          title: 'No Data Found',
+          //text: 'Something went wrong!',
+          //footer: 'Soryy'
+          // footer: '<a href="">Why do I have this issue?</a>'
+        })
+      }
+
+
+    });
+
+
+
+    //console.log(user, fromdate,)
+
+  }
+
+
   addPolicyPayment() {
-    
-
-
 
     if (!(this.paymentForm.get('paidAmount')?.value == this.paymentForm.get('confirmpaidAmount')?.value)) {
       Swal.fire({
@@ -405,6 +451,18 @@ export class EmployeeComponent implements OnInit {
 
     this.paymentForm.reset();
     this.policyPayments = null;
+
+    Swal.fire(
+      'Record Clear Done',
+      'Well Done !',
+      'success'
+    )
+
+  }
+  clearcollectionForms() {
+
+    this.collectionform.reset();
+    this.collctionSums = null;
 
     Swal.fire(
       'Record Clear Done',
