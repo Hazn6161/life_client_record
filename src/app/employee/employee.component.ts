@@ -327,6 +327,7 @@ export class EmployeeComponent implements OnInit {
 
         this.collctionSums = res;
 
+
         Swal.fire(
           'Data Loading Done',
           '',
@@ -335,6 +336,7 @@ export class EmployeeComponent implements OnInit {
 
       }
       else {
+
         this.spinner.hide('sp1');
         Swal.fire({
           icon: 'error',
@@ -343,8 +345,11 @@ export class EmployeeComponent implements OnInit {
           //footer: 'Soryy'
           // footer: '<a href="">Why do I have this issue?</a>'
         })
+        //let ref = document.getElementById('cancel');
+        //ref?.click();
+          // this.collectionform.reset();
+        this.collctionSums = null;
       }
-
 
     });
 
