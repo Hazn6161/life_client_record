@@ -16,6 +16,7 @@ export class EmployeeComponent implements OnInit {
   formValue!: UntypedFormGroup;
   paymentForm!: UntypedFormGroup;
   collectionform!: UntypedFormGroup;
+  newbusinessform!: UntypedFormGroup;
   //employeeModelObj: EmployeeModel = new EmployeeModel();
   employeeData!: any;
   policyData!: any;
@@ -33,10 +34,15 @@ export class EmployeeComponent implements OnInit {
   fromdate: any;
   todate: any;
   collctionSums: any;
+  chequeNo: any;
+  branch: any;
+  radios="cash";
 
 
   spinner1 = 'sp1';
   spinner2 = 'sp2';
+
+  paymentTypeBoolean = false;
 
   @ViewChild('myModalClose') modalClose;
 
@@ -98,9 +104,12 @@ export class EmployeeComponent implements OnInit {
     this.collectionform = this.formBuilder.group({
 
       fromdate: ['', Validators.required],
-      todate: ['', Validators.required]
+      todate: ['', Validators.required],
+      cusnic: ['', Validators.required],
+      newcusdob: ['', Validators.required]
 
     });
+
 
     let user = JSON.parse(localStorage.getItem('user') || '');
 
@@ -347,7 +356,7 @@ export class EmployeeComponent implements OnInit {
         })
         //let ref = document.getElementById('cancel');
         //ref?.click();
-          // this.collectionform.reset();
+        // this.collectionform.reset();
         this.collctionSums = null;
       }
 
@@ -452,6 +461,113 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  addNewbusiness() {
+
+    if (!(this.paymentForm.get('paidAmount')?.value == this.paymentForm.get('confirmpaidAmount')?.value)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Amount mismatched',
+        text: 'Please Check the Amount!'
+      })
+
+      let control = this.paymentForm.get('paidAmount');
+      //this.getElementById('#confirmpaidAmount').style.borderColor='red'
+      control?.invalid && control.touched ? 'red' : 'red';
+      return
+    }
+
+    if (this.paymentForm.get('mobileNo2')?.value.match(/\d/g).length === 10) {
+
+
+      if (this.paymentForm.get('paidAmount')?.value > 0) {
+        this.spinner.show('sp2');
+
+        let user = JSON.parse(localStorage.getItem('user') || '');
+
+        let policyPay = {
+
+          "createdBy": user.percode,
+          "cusAddress": this.paymentForm.value.payAddress,
+          "cusName": this.paymentForm.value.policyHolder,
+          // "dueDate": "2024-08-29T12:30:09.321Z",
+          "mobile": this.paymentForm.value.mobileNo ? this.paymentForm.value.mobileNo : "",
+          "modifiedBy": user.percode,
+          "newMobile": this.paymentForm.value.mobileNo2,
+          "nic": this.paymentForm.value.cusNic,
+          // "paidDate": "2024-08-29T12:30:09.321Z",
+          "payment": this.paymentForm.value.paidAmount,
+          "policyNo": this.paymentForm.value.policyNo,
+          "receiptsCategory": this.paymentForm.value.receiptsCat,
+          //"receiptNo": "",
+          "status": "ACTIVE",
+          "statusType": "Paid",
+          "type": this.paymentForm.value.policyType
+
+        }
+
+        this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
+          this.spinner.hide('sp2');
+
+          Swal.fire(
+            'Payment Successfully',
+            'Good job !',
+            'success'
+          )
+          let ref = document.getElementById('cancel');
+          ref?.click();
+          this.paymentForm.reset();
+          this.policyPayments = null;
+
+        }, error => {
+          this.spinner.hide('sp2');
+          Swal.fire({
+            icon: 'error',
+            title: 'Server Error',
+            text: 'Something went wrong!',
+            footer: 'Please Contact Us - 0710233087'
+          })
+        });
+
+      } else {
+        //this.spinner.hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'Amount is incorect ',
+          text: 'Please Check the Amount!',
+          //footer: 'Soryy'
+          // footer: '<a href="">Why do I have this issue?</a>'
+        })
+      }
+
+    } else {
+      //this.spinner.hide();
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Mobile no format',
+        text: 'Please Check the Mobile no !',
+        //footer: 'Soryy'
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+    }
+
+
+  }
+
+  onRadioButtonChange(e): void {
+    //console.log(e);
+
+    if (e.target.value == "cash") {
+      this.paymentTypeBoolean = !this.paymentTypeBoolean;
+      this.branch=null
+      this.chequeNo=null
+
+    } else if (e.target.value == "cheque") {
+      this.paymentTypeBoolean = !this.paymentTypeBoolean;
+    }
+  }
+
+
+
   clearForms() {
 
     this.paymentForm.reset();
@@ -552,4 +668,3 @@ export class EmployeeComponent implements OnInit {
 
 
 }
-

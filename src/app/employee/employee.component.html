@@ -394,6 +394,7 @@
                           </div>
                         </div>
                       </div>
+          
                       <div class="col-12 col-sm-6">
                         <div class="d-flex mb-0">
                           <div class="me-4 text-primary">
@@ -454,159 +455,101 @@
     </div>
   </div>
 
-  <!-- Modal business -->
+  <!-- Modal new business -->
   <div class="modal fade bd-example-modal-lg" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabe3"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title fw-bolder" id="exampleModalLabe3"><i class="bi bi-journals me-3"></i>New Business</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="">
+          <!-- <div class="">
             <img class="workimag mt-5 mb-5" src="/assets/5695859.png">
+          </div> -->
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Plan</label>
+              <select type="text" class="form-control">
+                <option value="" selected disabled>Please select</option>
+                <option>Renewal Receipts</option>
+                <option>Deposit Receipts</option>
+                <option>Policy loan Settlement Receipts</option>
+                <option>Policy fee</option>
+                <option>Alteration fee</option>
+                <option>Special revival fee</option>
+                <option>Duplicate policy fee</option>
+                <option>Loan fee</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <textarea class="form-control" ></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">NIC</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="d-grid  mb-3">
+              <label class="form-label">Date of birth</label>
+              <input type="date" class="form-control" >
+            </div>
+            <div class="form-check col-sm-1">
+              <input class="form-check-input" type="radio" [(ngModel)]="radios" name="radios" value="cash"(change)="onRadioButtonChange($event)" checked>
+              <label class="form-check-label" >
+                  Cash
+              </label> 
+            </div>
+            <div class="form-check col-sm-3 form-check-inline">
+              <input class="form-check-input" type="radio" [(ngModel)]="radios" name="radios" value="cheque" (change)="onRadioButtonChange($event)">
+              <label class="form-check-label">
+                  Cheque
+              </label>
           </div>
-          <!-- <form [formGroup]="formValue">
-            <div class="mb-3">
-              <label class="form-label">From Date</label>
-              <input type="date" class="form-control" id="exampleInputPassword1" formControlName="presentInsurer">
+          <div class="row mb-4">
+            <div class="col-sm-3">
+                <label class="col-form-label">Branch</label>
+                <div>
+                    <input class="form-control" name="branch" [(ngModel)]="branch" [disabled] = "!paymentTypeBoolean" maxlength = "12">
+                    
+                </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">To Date</label>
-              <input type="date" class="form-control" id="exampleInputPassword1" formControlName="presentInsurer">
+            <div class="col-sm-3">
+                <label class="col-form-label">Cheque No</label>
+                <div>
+                    <input class="form-control" id="chequeNo" name="chequeNo" [(ngModel)]="chequeNo" [disabled] = "!paymentTypeBoolean" >
+                </div>
             </div>
-            <div class="d-grid gap-2">
-              <button type="button" class="btn btn-primary mb-3">Search</button>
-            </div>
-            <div class="table-responsive" style="float: left; width:100%;">
-              <h4 class="text-center">Region Summary</h4>
-              <table class="table" id="RecipeIngredientTable2">
-                <thead>
-                  <tr>
-                    <th scope="col">Policy Type</th>
-                    <th scope="col">Payment</th>
-                    <th scope="col">Due Date</th>
-                    <th scope="col">Paid Date</th>
-                    <th scope="col">Status</th>
-                  </tr>
-                </thead>
-                <tbody class="tbody-scroll">
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">FIRST PREMIUM</td>
-                    <td class="text-center">200000</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">2024-08-27</td>
-                    <td class="text-center">Paid</td>
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
-          </form> -->
         </div>
-        <!-- <div class="modal-footer">
-          <button *ngIf="!isEdit" type="button" class="btn btn-success">
-            Download
+            <div class="mb-3">
+              <label class="form-label">Paid Amount</label>
+              <input type="number" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Confirm Paid Amount</label>
+              <input type="number" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger">
+            Clear
           </button>
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </button>
-        </div> -->
+          <button *ngIf="!isEdit" type="button" class="btn btn-success">
+            Save
+          </button>
+        </div>
       </div>
     </div>
   </div>
-
 
   <!-- My Collection -->
   <div class="modal fade bd-example-modal-lg" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4"
