@@ -482,7 +482,7 @@ export class EmployeeComponent implements OnInit {
 
   addNewbusiness() {
 
-    if (!(this.newbisform.get('newbispaidAmount')?.value == this.paymentForm.get('newbisconfirmPaidAmount')?.value)) {
+    if (!(this.newbisform.get('newbispaidAmount')?.value == this.newbisform.get('newbisconfirmPaidAmount')?.value)) {
       Swal.fire({
         icon: 'error',
         title: 'Amount mismatched',
@@ -497,7 +497,8 @@ export class EmployeeComponent implements OnInit {
 
 
       if (this.newbisform.get('newbispaidAmount')?.value > 0) {
-        this.spinner.show('sp2');
+        //this.spinner.show('sp2');
+        
 
         let user = JSON.parse(localStorage.getItem('user') || '');
 
@@ -525,11 +526,12 @@ export class EmployeeComponent implements OnInit {
         // this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
         //   this.spinner.hide('sp2');
 
-        //   Swal.fire(
-        //     'Payment Successfully',
-        //     'Good job !',
-        //     'success'
-        //   )
+          Swal.fire(
+            'Payment Successfully',
+            'Good job !',
+            'success'
+          )
+          
         //   let ref = document.getElementById('cancel');
         //   ref?.click();
         //   this.paymentForm.reset();
