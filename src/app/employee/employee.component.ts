@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -17,6 +17,7 @@ export class EmployeeComponent implements OnInit {
   paymentForm!: UntypedFormGroup;
   collectionform!: UntypedFormGroup;
   newbusinessform!: UntypedFormGroup;
+  newbisform!: UntypedFormGroup;
   //employeeModelObj: EmployeeModel = new EmployeeModel();
   employeeData!: any;
   policyData!: any;
@@ -36,6 +37,7 @@ export class EmployeeComponent implements OnInit {
   collctionSums: any;
   chequeNo: any;
   branch: any;
+  bank: any;
   radios="cash";
 
 
@@ -51,7 +53,9 @@ export class EmployeeComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private api: ApiService,
     private router: Router,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService) { 
+      
+    }
 
   ngOnInit(): void {
 
@@ -61,6 +65,7 @@ export class EmployeeComponent implements OnInit {
       this.isEditButtonNameAdd = 'Add';
     }
     this.getEmployeeByPercode();
+
 
     this.formValue = this.formBuilder.group({
 
@@ -104,10 +109,24 @@ export class EmployeeComponent implements OnInit {
     this.collectionform = this.formBuilder.group({
 
       fromdate: ['', Validators.required],
-      todate: ['', Validators.required],
-      cusnic: ['', Validators.required],
-      newcusdob: ['', Validators.required]
+      todate: ['', Validators.required]
+      
 
+    });
+
+    this.newbisform = this.formBuilder.group({
+      newcuspaln: ['', Validators.required],
+      newcusname: ['', Validators.required],
+      newcusaddres: ['', Validators.required],
+      newcusnic: ['', Validators.required],
+      newcusdob: ['', Validators.required],
+      newcusmobile: ['', Validators.required],
+      paymentType: ['cash', Validators.required], 
+      branch: [({ value: '', disabled: true }),Validators.required],
+      chequeNo: [({ value: '', disabled: true }),Validators.required],
+      bank: [({ value: '', disabled: true }),Validators.required],
+      newbispaidAmount: ['', Validators.required],
+      newbisconfirmPaidAmount: ['', Validators.required]
     });
 
 
@@ -463,70 +482,68 @@ export class EmployeeComponent implements OnInit {
 
   addNewbusiness() {
 
-    if (!(this.paymentForm.get('paidAmount')?.value == this.paymentForm.get('confirmpaidAmount')?.value)) {
+    if (!(this.newbisform.get('newbispaidAmount')?.value == this.paymentForm.get('newbisconfirmPaidAmount')?.value)) {
       Swal.fire({
         icon: 'error',
         title: 'Amount mismatched',
         text: 'Please Check the Amount!'
       })
 
-      let control = this.paymentForm.get('paidAmount');
+      let control = this.newbisform.get('newbispaidAmount');
       //this.getElementById('#confirmpaidAmount').style.borderColor='red'
       control?.invalid && control.touched ? 'red' : 'red';
       return
     }
 
-    if (this.paymentForm.get('mobileNo2')?.value.match(/\d/g).length === 10) {
 
-
-      if (this.paymentForm.get('paidAmount')?.value > 0) {
+      if (this.newbisform.get('newbispaidAmount')?.value > 0) {
         this.spinner.show('sp2');
 
         let user = JSON.parse(localStorage.getItem('user') || '');
 
-        let policyPay = {
+        // let policyPay = {
 
-          "createdBy": user.percode,
-          "cusAddress": this.paymentForm.value.payAddress,
-          "cusName": this.paymentForm.value.policyHolder,
-          // "dueDate": "2024-08-29T12:30:09.321Z",
-          "mobile": this.paymentForm.value.mobileNo ? this.paymentForm.value.mobileNo : "",
-          "modifiedBy": user.percode,
-          "newMobile": this.paymentForm.value.mobileNo2,
-          "nic": this.paymentForm.value.cusNic,
-          // "paidDate": "2024-08-29T12:30:09.321Z",
-          "payment": this.paymentForm.value.paidAmount,
-          "policyNo": this.paymentForm.value.policyNo,
-          "receiptsCategory": this.paymentForm.value.receiptsCat,
-          //"receiptNo": "",
-          "status": "ACTIVE",
-          "statusType": "Paid",
-          "type": this.paymentForm.value.policyType
+        //   "createdBy": user.percode,
+        //   "cusAddress": this.paymentForm.value.payAddress,
+        //   "cusName": this.paymentForm.value.policyHolder,
+        //   // "dueDate": "2024-08-29T12:30:09.321Z",
+        //   "mobile": this.paymentForm.value.mobileNo ? this.paymentForm.value.mobileNo : "",
+        //   "modifiedBy": user.percode,
+        //   "newMobile": this.paymentForm.value.mobileNo2,
+        //   "nic": this.paymentForm.value.cusNic,
+        //   // "paidDate": "2024-08-29T12:30:09.321Z",
+        //   "payment": this.paymentForm.value.paidAmount,
+        //   "policyNo": this.paymentForm.value.policyNo,
+        //   "receiptsCategory": this.paymentForm.value.receiptsCat,
+        //   //"receiptNo": "",
+        //   "status": "ACTIVE",
+        //   "statusType": "Paid",
+        //   "type": this.paymentForm.value.policyType
 
-        }
+        // }
 
-        this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
-          this.spinner.hide('sp2');
+        // this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
+        //   this.spinner.hide('sp2');
 
-          Swal.fire(
-            'Payment Successfully',
-            'Good job !',
-            'success'
-          )
-          let ref = document.getElementById('cancel');
-          ref?.click();
-          this.paymentForm.reset();
-          this.policyPayments = null;
+        //   Swal.fire(
+        //     'Payment Successfully',
+        //     'Good job !',
+        //     'success'
+        //   )
+        //   let ref = document.getElementById('cancel');
+        //   ref?.click();
+        //   this.paymentForm.reset();
+        //   this.policyPayments = null;
 
-        }, error => {
-          this.spinner.hide('sp2');
-          Swal.fire({
-            icon: 'error',
-            title: 'Server Error',
-            text: 'Something went wrong!',
-            footer: 'Please Contact Us - 0710233087'
-          })
-        });
+        // }, error => {
+        //   this.spinner.hide('sp2');
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: 'Server Error',
+        //     text: 'Something went wrong!',
+        //     footer: 'Please Contact Us - 0710233087'
+        //   })
+        // });
 
       } else {
         //this.spinner.hide();
@@ -539,30 +556,23 @@ export class EmployeeComponent implements OnInit {
         })
       }
 
-    } else {
-      //this.spinner.hide();
-      Swal.fire({
-        icon: 'error',
-        title: 'Invalid Mobile no format',
-        text: 'Please Check the Mobile no !',
-        //footer: 'Soryy'
-        // footer: '<a href="">Why do I have this issue?</a>'
-      })
-    }
 
 
   }
 
-  onRadioButtonChange(e): void {
-    //console.log(e);
-
-    if (e.target.value == "cash") {
-      this.paymentTypeBoolean = !this.paymentTypeBoolean;
-      this.branch=null
-      this.chequeNo=null
-
-    } else if (e.target.value == "cheque") {
-      this.paymentTypeBoolean = !this.paymentTypeBoolean;
+  onRadioButtonChange(event: any) {
+    const isCashSelected = event.target.value === 'cash';
+    if (isCashSelected) {
+      this.newbisform.controls['bank'].disable();
+      this.newbisform.controls['branch'].disable();
+      this.newbisform.controls['chequeNo'].disable();
+      this.newbisform.controls['bank'].setValue('');  // Clear the value
+      this.newbisform.controls['branch'].setValue('');  // Clear the value
+      this.newbisform.controls['chequeNo'].setValue(''); // Clear the value
+    } else {
+      this.newbisform.controls['bank'].enable();
+      this.newbisform.controls['branch'].enable();
+      this.newbisform.controls['chequeNo'].enable();
     }
   }
 
@@ -668,3 +678,24 @@ export class EmployeeComponent implements OnInit {
 
 
 }
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()

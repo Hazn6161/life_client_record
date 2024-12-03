@@ -12,6 +12,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ReportsComponent } from './reports/reports.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EmployeeComponent,
     LoginComponent,
     ChangePasswordComponent,
-    ReportsComponent
+    ReportsComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

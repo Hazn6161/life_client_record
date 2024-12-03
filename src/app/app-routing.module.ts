@@ -4,6 +4,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { LoginComponent } from './login/login.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ReportsComponent } from './reports/reports.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -11,6 +12,8 @@ const routes: Routes = [
   {path:'employee',component:EmployeeComponent},
   {path:'change-password',component:ChangePasswordComponent},
   {path:'reports',component:ReportsComponent},
+  {path:'test',component:TestComponent},
+
 ];
 
 @NgModule({

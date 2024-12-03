@@ -394,7 +394,7 @@
                           </div>
                         </div>
                       </div>
-          
+
                       <div class="col-12 col-sm-6">
                         <div class="d-flex mb-0">
                           <div class="me-4 text-primary">
@@ -458,7 +458,7 @@
   <!-- Modal new business -->
   <div class="modal fade bd-example-modal-lg" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabe3"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title fw-bolder" id="exampleModalLabe3"><i class="bi bi-journals me-3"></i>New Business</h5>
@@ -468,11 +468,11 @@
           <!-- <div class="">
             <img class="workimag mt-5 mb-5" src="/assets/5695859.png">
           </div> -->
-          <form>
+          <form [formGroup]="newbisform">
             <div class="mb-3">
               <label class="form-label">Plan</label>
-              <select type="text" class="form-control">
-                <option value="" selected disabled>Please select</option>
+              <select class="form-select" formControlName="newcuspaln">
+                <option selected disabled value="">Please select</option>
                 <option>Renewal Receipts</option>
                 <option>Deposit Receipts</option>
                 <option>Policy loan Settlement Receipts</option>
@@ -482,59 +482,80 @@
                 <option>Duplicate policy fee</option>
                 <option>Loan fee</option>
               </select>
+              <div class="invalid-feedback">
+                Please select a valid plan.
+              </div>
             </div>
+
             <div class="mb-3">
               <label class="form-label">Name</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="newcusname">
             </div>
+
             <div class="mb-3">
               <label class="form-label">Address</label>
-              <textarea class="form-control" ></textarea>
+              <textarea class="form-control" formControlName="newcusaddres"></textarea>
             </div>
+
             <div class="mb-3">
               <label class="form-label">NIC</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="newcusnic">
             </div>
-            <div class="d-grid  mb-3">
-              <label class="form-label">Date of birth</label>
-              <input type="date" class="form-control" >
+
+            <div class="d-grid mb-3">
+              <label class="form-label">Date of Birth</label>
+              <input type="date" class="form-control" formControlName="newcusdob">
             </div>
-            <div class="form-check col-sm-1">
-              <input class="form-check-input" type="radio" [(ngModel)]="radios" name="radios" value="cash"(change)="onRadioButtonChange($event)" checked>
-              <label class="form-check-label" >
-                  Cash
-              </label> 
-            </div>
-            <div class="form-check col-sm-3 form-check-inline">
-              <input class="form-check-input" type="radio" [(ngModel)]="radios" name="radios" value="cheque" (change)="onRadioButtonChange($event)">
-              <label class="form-check-label">
-                  Cheque
-              </label>
-          </div>
-          <div class="row mb-4">
-            <div class="col-sm-3">
-                <label class="col-form-label">Branch</label>
-                <div>
-                    <input class="form-control" name="branch" [(ngModel)]="branch" [disabled] = "!paymentTypeBoolean" maxlength = "12">
-                    
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <label class="col-form-label">Cheque No</label>
-                <div>
-                    <input class="form-control" id="chequeNo" name="chequeNo" [(ngModel)]="chequeNo" [disabled] = "!paymentTypeBoolean" >
-                </div>
-            </div>
-        </div>
+
             <div class="mb-3">
-              <label class="form-label">Paid Amount</label>
-              <input type="number" class="form-control">
+              <label class="form-label">Mobile No</label>
+              <input type="text" class="form-control" formControlName="newcusmobile">
             </div>
+
+          <div class="mt-4 mx-1">
+            <div class="form-check form-check-inline mb-3 col-sm-4">
+              <input class="form-check-input" type="radio" formControlName="paymentType" value="cash" 
+                (change)="onRadioButtonChange($event)" style="height:25px; width: 25px; transition: 0.2s all linear; margin-right: 10px;" checked>
+              <label class="form-check-label" style="margin-top: 4px; margin-inline-start: 10px;" >
+                Cash
+              </label>
+            </div>
+            <div class="form-check form-check-inline mb-3 col-sm-4">
+              <input class="form-check-input" type="radio" formControlName="paymentType" value="cheque"
+                (change)="onRadioButtonChange($event)" style="height:25px; width: 25px; transition: 0.2s all linear; margin-right: 10px;">
+              <label class="form-check-label" style="margin-top: 4px; margin-inline-start: 10px;">
+                Cheque
+              </label>
+            </div>
+          </div>  
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="col-form-label">Bank</label>
+                <input class="form-control" formControlName="bank">
+              </div>
+
+              <div class="col-sm-4">
+                <label class="col-form-label">Branch</label>
+                <input class="form-control" formControlName="branch">
+              </div>
+
+              <div class="col-sm-4">
+                <label class="col-form-label">Cheque No</label>
+                <input class="form-control" formControlName="chequeNo">
+              </div>
+            </div>
+
+            <div class="mb-3 mt-4">
+              <label class="form-label">Paid Amount</label>
+              <input type="number" class="form-control" formControlName="newbispaidAmount">
+            </div>
+
             <div class="mb-3">
               <label class="form-label">Confirm Paid Amount</label>
-              <input type="number" class="form-control">
+              <input type="number" class="form-control" formControlName="newbisconfirmPaidAmount">
             </div>
           </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger">
@@ -543,7 +564,8 @@
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </button>
-          <button *ngIf="!isEdit" type="button" class="btn btn-success">
+          <button *ngIf="!isEdit" type="button" (click)="addNewbusiness()" class="select" class="btn btn-success"
+            [disabled]="newbisform.invalid">
             Save
           </button>
         </div>
@@ -575,7 +597,8 @@
               <input type="date" class="form-control mb-4" formControlName="todate">
             </div>
             <div class="d-grid gap-2 mb-2">
-              <button type="button" (click)="getByDaterange()" [disabled]="collectionform.invalid" class="btn btn-primary mb-3">Search</button>
+              <button type="button" (click)="getByDaterange()" [disabled]="collectionform.invalid"
+                class="btn btn-primary mb-3">Search</button>
             </div>
             <div class="table-responsive" style="width:100%;">
               <h4 class="text-center">Collection Summary</h4>
@@ -608,7 +631,7 @@
           <!-- <button *ngIf="!isEdit" type="button" class="btn btn-success">
             Download
           </button> -->
-          <button type="button" class="btn btn-danger" (click)="clearcollectionForms()" >
+          <button type="button" class="btn btn-danger" (click)="clearcollectionForms()">
             Clear
           </button>
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">

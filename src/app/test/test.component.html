@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 4 Modal Form Validation</title>
+  <!-- Bootstrap 4 CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Button to trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Open Form
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="myForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" required>
+              <div class="invalid-feedback">
+                Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" required>
+              <div class="invalid-feedback">
+                Please provide a valid email address.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message" rows="3" required></textarea>
+              <div class="invalid-feedback">
+                Message cannot be empty.
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 4 JS and dependencies (jQuery and Popper.js) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JS for form validation -->
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var form = document.getElementById('myForm');
+      var formElements = form.elements;
+      var isValid = true;
+
+      // Loop through the form elements and validate them
+      for (var i = 0; i < formElements.length; i++) {
+        var element = formElements[i];
+        if (element.required && !element.value.trim()) {
+          isValid = false;
+          element.classList.add('is-invalid');
+        } else {
+          element.classList.remove('is-invalid');
+        }
+      }
+
+      // If form is valid, you can proceed with form submission or AJAX request
+      if (isValid) {
+        // Form is valid, you can perform actions like sending data via AJAX
+        alert('Form submitted successfully!');
+        // Optionally, close modal
+        $('#exampleModal').modal('hide');
+      }
+    });
+
+    // Clear invalid feedback when the user starts typing
+    document.querySelectorAll('input, textarea').forEach(function(input) {
+      input.addEventListener('input', function() {
+        input.classList.remove('is-invalid');
+      });
+    });
+  </script>
+</body>
+</html>
+
