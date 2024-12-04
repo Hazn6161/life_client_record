@@ -48,6 +48,10 @@ export class ApiService {
     return this.http.get(this.apiUrl + "/PolicyPaymentDetails/DateRange/" + percode +"/"+ fromdate + "/"+ todate, { responseType: 'json'});
   }
 
+  getPlan(): any {
+    return this.http.get(this.apiUrl + "/Plan/",  { responseType: 'json'});
+  }
+
   // getEmployee(){
   //   return this.http.get<any>("http://172.21.112.112:3000/posts").pipe(map((res:any)=>{
   //     return res

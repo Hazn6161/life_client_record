@@ -39,6 +39,7 @@ export class EmployeeComponent implements OnInit {
   branch: any;
   bank: any;
   radios="cash";
+  plandata!: any;
 
 
   spinner1 = 'sp1';
@@ -65,6 +66,7 @@ export class EmployeeComponent implements OnInit {
       this.isEditButtonNameAdd = 'Add';
     }
     this.getEmployeeByPercode();
+    this.getAllPlan();
 
 
     this.formValue = this.formBuilder.group({
@@ -480,6 +482,23 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  // getByPolicyNo() {
+  //   this.spinner.show('sp1');
+  //   let policyNo = this.paymentForm.value.policyNo;
+
+  //   this.api.getpolicyNo(policyNo).subscribe((res) => {
+
+  getAllPlan() {
+
+    //this.spinner.show('sp1');
+    this.api.getPlan().subscribe((res) => {
+      
+      this.plandata = res;
+      //this.spinner.hide('sp1');
+    });
+   
+  }
+
   addNewbusiness() {
 
     if (!(this.newbisform.get('newbispaidAmount')?.value == this.newbisform.get('newbisconfirmPaidAmount')?.value)) {
@@ -494,6 +513,8 @@ export class EmployeeComponent implements OnInit {
       control?.invalid && control.touched ? 'red' : 'red';
       return
     }
+
+    if (this.newbisform.get('newcusmobile')?.value.match(/\d/g).length === 10) {
 
 
       if (this.newbisform.get('newbispaidAmount')?.value > 0) {
@@ -532,10 +553,10 @@ export class EmployeeComponent implements OnInit {
             'success'
           )
           
-        //   let ref = document.getElementById('cancel');
-        //   ref?.click();
-        //   this.paymentForm.reset();
-        //   this.policyPayments = null;
+           let ref = document.getElementById('cancel');
+           ref?.click();
+           this.newbisform.reset();
+           //this.policyPayments = null;
 
         // }, error => {
         //   this.spinner.hide('sp2');
@@ -557,9 +578,16 @@ export class EmployeeComponent implements OnInit {
           // footer: '<a href="">Why do I have this issue?</a>'
         })
       }
-
-
-
+    } else {
+        //this.spinner.hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Mobile no format',
+          text: 'Please Check the Mobile no !',
+          //footer: 'Soryy'
+          // footer: '<a href="">Why do I have this issue?</a>'
+        })
+      }  
   }
 
   onRadioButtonChange(event: any) {
@@ -577,9 +605,6 @@ export class EmployeeComponent implements OnInit {
       this.newbisform.controls['chequeNo'].enable();
     }
   }
-
-
-
   clearForms() {
 
     this.paymentForm.reset();
@@ -596,6 +621,20 @@ export class EmployeeComponent implements OnInit {
 
     this.collectionform.reset();
     this.collctionSums = null;
+    this.newbisform.reset();
+
+    Swal.fire(
+      'Record Clear Done',
+      'Well Done !',
+      'success'
+    )
+
+  }
+
+  clearnewbisForms() {
+
+    //this.collctionSums = null;
+    this.newbisform.reset();
 
     Swal.fire(
       'Record Clear Done',

@@ -471,16 +471,11 @@
           <form [formGroup]="newbisform">
             <div class="mb-3">
               <label class="form-label">Plan</label>
-              <select class="form-select" formControlName="newcuspaln">
-                <option selected disabled value="">Please select</option>
-                <option>Renewal Receipts</option>
-                <option>Deposit Receipts</option>
-                <option>Policy loan Settlement Receipts</option>
-                <option>Policy fee</option>
-                <option>Alteration fee</option>
-                <option>Special revival fee</option>
-                <option>Duplicate policy fee</option>
-                <option>Loan fee</option>
+              <select class="form-select" name="newcuspaln" formControlName="newcuspaln">
+                <option value="" selected disabled>Please select</option>
+                <option *ngFor="let plan of plandata">
+                  {{plan.plnDesc}}
+                </option>
               </select>
               <div class="invalid-feedback">
                 Please select a valid plan.
@@ -509,7 +504,7 @@
 
             <div class="mb-3">
               <label class="form-label">Mobile No</label>
-              <input type="text" class="form-control" formControlName="newcusmobile">
+              <input type="text" class="form-control" formControlName="newcusmobile" maxlength="10">
             </div>
 
           <div class="mt-4 mx-1">
@@ -558,7 +553,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger">
+          <button type="button" class="btn btn-danger" (click)="clearnewbisForms()">
             Clear
           </button>
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
