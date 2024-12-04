@@ -38,8 +38,9 @@ export class EmployeeComponent implements OnInit {
   chequeNo: any;
   branch: any;
   bank: any;
-  radios="cash";
+  radios = "cash";
   plandata!: any;
+  bankdetails!: any;
 
 
   spinner1 = 'sp1';
@@ -48,15 +49,18 @@ export class EmployeeComponent implements OnInit {
   paymentTypeBoolean = false;
 
   @ViewChild('myModalClose') modalClose;
+  filteredItems: any;
+  items: any;
+  searchText: any;
 
 
   constructor(
     private formBuilder: UntypedFormBuilder,
     private api: ApiService,
     private router: Router,
-    private spinner: NgxSpinnerService) { 
-      
-    }
+    private spinner: NgxSpinnerService) {
+
+  }
 
   ngOnInit(): void {
 
@@ -67,6 +71,7 @@ export class EmployeeComponent implements OnInit {
     }
     this.getEmployeeByPercode();
     this.getAllPlan();
+    this.getAllBank();
 
 
     this.formValue = this.formBuilder.group({
@@ -112,7 +117,7 @@ export class EmployeeComponent implements OnInit {
 
       fromdate: ['', Validators.required],
       todate: ['', Validators.required]
-      
+
 
     });
 
@@ -123,10 +128,10 @@ export class EmployeeComponent implements OnInit {
       newcusnic: ['', Validators.required],
       newcusdob: ['', Validators.required],
       newcusmobile: ['', Validators.required],
-      paymentType: ['cash', Validators.required], 
-      branch: [({ value: '', disabled: true }),Validators.required],
-      chequeNo: [({ value: '', disabled: true }),Validators.required],
-      bank: [({ value: '', disabled: true }),Validators.required],
+      paymentType: ['cash', Validators.required],
+      branch: [({ value: '', disabled: true }), Validators.required],
+      chequeNo: [({ value: '', disabled: true }), Validators.required],
+      bank: [({ value: '', disabled: true }), Validators.required],
       newbispaidAmount: ['', Validators.required],
       newbisconfirmPaidAmount: ['', Validators.required]
     });
@@ -492,13 +497,20 @@ export class EmployeeComponent implements OnInit {
 
     //this.spinner.show('sp1');
     this.api.getPlan().subscribe((res) => {
-      
+
       this.plandata = res;
       //this.spinner.hide('sp1');
     });
-   
-  }
 
+  }
+  getAllBank() {
+    this.api.getBankDetails().subscribe((res) => {
+
+      this.bankdetails = res;
+    });
+  }
+  
+ 
   addNewbusiness() {
 
     if (!(this.newbisform.get('newbispaidAmount')?.value == this.newbisform.get('newbisconfirmPaidAmount')?.value)) {
@@ -519,7 +531,7 @@ export class EmployeeComponent implements OnInit {
 
       if (this.newbisform.get('newbispaidAmount')?.value > 0) {
         //this.spinner.show('sp2');
-        
+
 
         let user = JSON.parse(localStorage.getItem('user') || '');
 
@@ -547,16 +559,16 @@ export class EmployeeComponent implements OnInit {
         // this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
         //   this.spinner.hide('sp2');
 
-          Swal.fire(
-            'Payment Successfully',
-            'Good job !',
-            'success'
-          )
-          
-           let ref = document.getElementById('cancel');
-           ref?.click();
-           this.newbisform.reset();
-           //this.policyPayments = null;
+        Swal.fire(
+          'Payment Successfully',
+          'Good job !',
+          'success'
+        )
+
+        let ref = document.getElementById('cancel');
+        ref?.click();
+        this.newbisform.reset();
+        //this.policyPayments = null;
 
         // }, error => {
         //   this.spinner.hide('sp2');
@@ -579,16 +591,17 @@ export class EmployeeComponent implements OnInit {
         })
       }
     } else {
-        //this.spinner.hide();
-        Swal.fire({
-          icon: 'error',
-          title: 'Invalid Mobile no format',
-          text: 'Please Check the Mobile no !',
-          //footer: 'Soryy'
-          // footer: '<a href="">Why do I have this issue?</a>'
-        })
-      }  
+      //this.spinner.hide();
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Mobile no format',
+        text: 'Please Check the Mobile no !',
+        //footer: 'Soryy'
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+    }
   }
+
 
   onRadioButtonChange(event: any) {
     const isCashSelected = event.target.value === 'cash';

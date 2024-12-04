@@ -1,103 +1,47 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap 4 Modal Form Validation</title>
-  <!-- Bootstrap 4 CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-  <!-- Button to trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Open Form
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal Form</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Date-Time Picker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.css" integrity="sha512-BB0bszal4NXOgRP9MYCyVA0NNK2k1Rhr+8klY17rj4OhwTmqdPUQibKUDeHesYtXl7Ma2+tqC6c7FzYuHhw94g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css" integrity="sha512-MT4B7BDQpIoW1D7HNPZNMhCD2G6CDXia4tjCdgqQLyq2a9uQnLPLgMNbdPY7g6di3hHjAI8NGVqhstenYrzY1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <label for="date" class="col-1 col-form-label">Date</label>
+        <div class="col">
+          <div class="input-group date" id="datepicker">
+            <input type="text" class="form-control" id="date" placeholder="Date Of Birth" />
+            <span class="input-group-append">
+              <span class="input-group-text bg-light d-block">
+                <i class="fa fa-calendar"></i>
+              </span>
+            </span>
+          </div>
         </div>
-        <div class="modal-body">
-          <form id="myForm">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" required>
-              <div class="invalid-feedback">
-                Name is required.
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" required>
-              <div class="invalid-feedback">
-                Please provide a valid email address.
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea class="form-control" id="message" rows="3" required></textarea>
-              <div class="invalid-feedback">
-                Message cannot be empty.
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+        <label for="date" class="col-1 col-form-label">Time</label>
+        <div class="col">
+          <div class="input-group clockpicker" data-placement="bottom" data-align="bottom" data-autoclose="true">
+            <input type="text" class="form-control" placeholder="Time Of Birth" />
+            <span class="input-group-addon">
+              <i class="bi bi-clock"></i>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Bootstrap 4 JS and dependencies (jQuery and Popper.js) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <!-- Custom JS for form validation -->
-  <script>
-    document.getElementById('submitBtn').addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent form submission
-
-      var form = document.getElementById('myForm');
-      var formElements = form.elements;
-      var isValid = true;
-
-      // Loop through the form elements and validate them
-      for (var i = 0; i < formElements.length; i++) {
-        var element = formElements[i];
-        if (element.required && !element.value.trim()) {
-          isValid = false;
-          element.classList.add('is-invalid');
-        } else {
-          element.classList.remove('is-invalid');
-        }
-      }
-
-      // If form is valid, you can proceed with form submission or AJAX request
-      if (isValid) {
-        // Form is valid, you can perform actions like sending data via AJAX
-        alert('Form submitted successfully!');
-        // Optionally, close modal
-        $('#exampleModal').modal('hide');
-      }
-    });
-
-    // Clear invalid feedback when the user starts typing
-    document.querySelectorAll('input, textarea').forEach(function(input) {
-      input.addEventListener('input', function() {
-        input.classList.remove('is-invalid');
-      });
-    });
-  </script>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/jquery-clockpicker.min.js" integrity="sha512-x0qixPCOQbS3xAQw8BL9qjhAh185N7JSw39hzE/ff71BXg7P1fkynTqcLYMlNmwRDtgdoYgURIvos+NJ6g0rNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.js" integrity="sha512-1QoWYDbO//G0JPa2VnQ3WrXtcgOGGCtdpt5y9riMW4NCCRBKQ4bs/XSKJAUSLIIcHmvUdKCXmQGxh37CQ8rtZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="date-picker.js"></script>
+    
+  </body>
 </html>
-

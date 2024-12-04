@@ -317,11 +317,11 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Paid Amount</label>
-              <input type="number" class="form-control" formControlName="paidAmount">
+              <input type="tel" class="form-control" formControlName="paidAmount">
             </div>
             <div class="mb-3">
               <label class="form-label">Confirm Paid Amount</label>
-              <input type="number" class="form-control" id="confirmpaidAmount" formControlName="confirmpaidAmount">
+              <input type="tel" class="form-control" id="confirmpaidAmount" formControlName="confirmpaidAmount">
             </div>
           </form>
         </div>
@@ -477,9 +477,6 @@
                   {{plan.plnDesc}}
                 </option>
               </select>
-              <div class="invalid-feedback">
-                Please select a valid plan.
-              </div>
             </div>
 
             <div class="mb-3">
@@ -504,7 +501,7 @@
 
             <div class="mb-3">
               <label class="form-label">Mobile No</label>
-              <input type="text" class="form-control" formControlName="newcusmobile" maxlength="10">
+              <input type="tel" class="form-control" formControlName="newcusmobile" maxlength="10">
             </div>
 
           <div class="mt-4 mx-1">
@@ -523,31 +520,36 @@
               </label>
             </div>
           </div>  
-            <div class="row">
-              <div class="col-sm-4">
+            <div class="row mb-2">
+              <!-- <div class="col-sm-4">
                 <label class="col-form-label">Bank</label>
-                <input class="form-control" formControlName="bank">
-              </div>
-
-              <div class="col-sm-4">
-                <label class="col-form-label">Branch</label>
-                <input class="form-control" formControlName="branch">
+                <input class="form-control" formControlName="bank" *ngFor="let bank of bankdetails">
+                {{bank.branchCodetotal}}
+              </div> -->
+              <div class="col-sm-8">
+                <label class="col-form-label">Bank</label>
+                <select class="form-select" name="bank" formControlName="bank">
+                  <option value="" selected disabled>Please select</option>
+                  <option *ngFor="let bank of bankdetails">
+                    {{bank.branchCodetotal}}
+                  </option>
+                </select>
               </div>
 
               <div class="col-sm-4">
                 <label class="col-form-label">Cheque No</label>
-                <input class="form-control" formControlName="chequeNo">
+                <input type="tel" class="form-control" formControlName="chequeNo">
               </div>
             </div>
 
             <div class="mb-3 mt-4">
               <label class="form-label">Paid Amount</label>
-              <input type="number" class="form-control" formControlName="newbispaidAmount">
+              <input type="tel" class="form-control" formControlName="newbispaidAmount">
             </div>
 
             <div class="mb-3">
               <label class="form-label">Confirm Paid Amount</label>
-              <input type="number" class="form-control" formControlName="newbisconfirmPaidAmount">
+              <input type="tel" class="form-control" formControlName="newbisconfirmPaidAmount">
             </div>
           </form>
 

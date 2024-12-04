@@ -52,6 +52,10 @@ export class ApiService {
     return this.http.get(this.apiUrl + "/Plan/",  { responseType: 'json'});
   }
 
+  getBankDetails(): any {
+    return this.http.get(this.apiUrl + "/BankDetails/",  { responseType: 'json'});
+  }
+
   // getEmployee(){
   //   return this.http.get<any>("http://172.21.112.112:3000/posts").pipe(map((res:any)=>{
   //     return res
