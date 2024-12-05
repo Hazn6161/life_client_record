@@ -503,44 +503,48 @@
               <label class="form-label">Mobile No</label>
               <input type="tel" class="form-control" formControlName="newcusmobile" maxlength="10">
             </div>
-            <div class="mt-4">
+            <div class="mt-4 mx-1 mb-4">
               <h4 class="text-center mb-4 mt-4">Payment Type</h4>
-                <div class="row">
-                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input class="btn-check" value="cash" (change)="onRadioButtonChange($event)" formControlName="paymentType" type="radio"  name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary" for="btnradio1">Cash</label>
-                  
-                    <input class="btn-check" value="cheque" (change)="onRadioButtonChange($event)" formControlName="paymentType" type="radio" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btnradio2">Cheque</label>
-                  </div>
-                </div>
-                <div class="row mb-2 mt-2">
-                  <div class="mb-2">
-                    <label class="col-form-label">Bank</label>
-                    <select class="form-select" name="bank" formControlName="bank">
-                      <option value="" selected disabled>Please select</option>
-                      <option *ngFor="let bank of bankdetails">
-                        {{bank.branchCodetotal}}
-                      </option>
-                    </select>
-                  </div>
-  
-                  <div class="mb-2">
-                    <label class="col-form-label">Cheque No</label>
-                    <input type="tel" class="form-control" formControlName="chequeNo">
-                  </div>
-                </div>
-            </div>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input class="btn-check" value="cash" (change)="onRadioButtonChange($event)"
+                    formControlName="paymentType" type="radio" name="btnradio" id="btnradio1" autocomplete="off"
+                    checked>
+                  <label class="btn btn-outline-primary" for="btnradio1">Cash</label>
 
-            <div class="mb-3">
+                  <input class="btn-check" value="cheque" (change)="onRadioButtonChange($event)"
+                    formControlName="paymentType" type="radio" name="btnradio" id="btnradio2" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btnradio2">Cheque</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8 mb-3">
+                <label class="col-form-label">Bank</label>
+                <select class="form-select" name="bank" formControlName="bank">
+                  <option value="" selected disabled>Please select</option>
+                  <option *ngFor="let bank of bankdetails">
+                    {{bank.branchCodetotal}}
+                  </option>
+                </select>
+              </div>
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque No</label>
+                  <input type="tel" class="form-control" formControlName="chequeNo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
               <label class="form-label">Paid Amount</label>
               <input type="tel" class="form-control" formControlName="newbispaidAmount">
             </div>
 
-            <div class="mb-3">
+            <div class="col mb-3">
               <label class="form-label">Confirm Paid Amount</label>
               <input type="tel" class="form-control" formControlName="newbisconfirmPaidAmount">
             </div>
+            </div>
+            
           </form>
 
         </div>
