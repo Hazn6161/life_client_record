@@ -509,8 +509,8 @@ export class EmployeeComponent implements OnInit {
       this.bankdetails = res;
     });
   }
-  
- 
+
+
   addNewbusiness() {
 
     if (!(this.newbisform.get('newbispaidAmount')?.value == this.newbisform.get('newbisconfirmPaidAmount')?.value)) {
@@ -568,6 +568,11 @@ export class EmployeeComponent implements OnInit {
         let ref = document.getElementById('cancel');
         ref?.click();
         this.newbisform.reset();
+        this.newbisform.controls['paymentType'].setValue('cash');
+        this.newbisform.controls['bank'].disable();
+        this.newbisform.controls['chequeNo'].disable();
+        // this.newbisform.reset();
+        //this.radios = "cash";
         //this.policyPayments = null;
 
         // }, error => {
@@ -607,14 +612,11 @@ export class EmployeeComponent implements OnInit {
     const isCashSelected = event.target.value === 'cash';
     if (isCashSelected) {
       this.newbisform.controls['bank'].disable();
-      this.newbisform.controls['branch'].disable();
       this.newbisform.controls['chequeNo'].disable();
       this.newbisform.controls['bank'].setValue('');  // Clear the value
-      this.newbisform.controls['branch'].setValue('');  // Clear the value
       this.newbisform.controls['chequeNo'].setValue(''); // Clear the value
     } else {
       this.newbisform.controls['bank'].enable();
-      this.newbisform.controls['branch'].enable();
       this.newbisform.controls['chequeNo'].enable();
     }
   }
@@ -634,7 +636,6 @@ export class EmployeeComponent implements OnInit {
 
     this.collectionform.reset();
     this.collctionSums = null;
-    this.newbisform.reset();
 
     Swal.fire(
       'Record Clear Done',
@@ -646,8 +647,12 @@ export class EmployeeComponent implements OnInit {
 
   clearnewbisForms() {
 
-    //this.collctionSums = null;
     this.newbisform.reset();
+    this.newbisform.controls['paymentType'].setValue('cash');
+    this.newbisform.controls['bank'].disable();
+    this.newbisform.controls['chequeNo'].disable();
+    //this.collctionSums = null;
+    //this.newbisform.reset();
 
     Swal.fire(
       'Record Clear Done',
@@ -732,24 +737,3 @@ export class EmployeeComponent implements OnInit {
 
 
 }
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
