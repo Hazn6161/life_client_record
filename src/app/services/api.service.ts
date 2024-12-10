@@ -44,6 +44,10 @@ export class ApiService {
     return this.http.post<any>(this.apiUrl + "/PolicyPaymentDetails", policyPay);
   }
 
+  saveProposalinfo(newProposal): any {
+    return this.http.post<any>(this.apiUrl + "/NewBusiness", newProposal);
+  }
+
   getByDaterange(percode,fromdate,todate):any {
     return this.http.get(this.apiUrl + "/PolicyPaymentDetails/DateRange/" + percode +"/"+ fromdate + "/"+ todate, { responseType: 'json'});
   }

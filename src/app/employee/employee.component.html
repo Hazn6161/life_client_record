@@ -77,7 +77,7 @@
         <th scope="col">Present Insurer</th> -->
           <!-- <th scope="col">Monthly Income</th> -->
           <!-- <th scope="col">Monthly Expences</th> -->
-          <!-- <th scope="col">Created Data</th> -->
+          <th scope="col">Created Data</th>
           <!-- <th scope="col">Modified Data</th> -->
           <!-- <th scope="col">Sum Insured</th> -->
           <!-- <th scope="col">Remark</th> -->
@@ -95,9 +95,9 @@
           <!-- <td data-label="familyDetails">{{emp.familyDetails}}</td>
             <td data-label="Present Insurer">{{emp.presentInsurer}}</td> -->
           <!-- <td data-label="Monthly Income">{{emp.monthlyIncome}}</td>
-            <td data-label="Monthly Expences">{{emp.monthlyExpences}}</td>
+            <td data-label="Monthly Expences">{{emp.monthlyExpences}}</td> -->
             <td data-label="Created Data">{{emp.createdDateTime}}</td>
-            <td data-label="Modified Data">{{emp.modifiedDateTime}}</td> -->
+            <!-- <td data-label="Modified Data">{{emp.modifiedDateTime}}</td> -->
           <!-- <td data-label="Sum Insured">{{emp.sumInsured}}</td> -->
           <!-- <td data-label="Remark">{{emp.remark}}</td> -->
 
@@ -492,6 +492,24 @@
             </div>
 
             <div class="mb-3">
+              <label class="form-label">Titel</label>
+              <select class="form-select" name="newcustitel" formControlName="newcustitel">
+                <option value="" selected disabled>Please select</option>
+                <option>Mr</option>
+                <option>Ms</option>
+                <option>Mrs</option>
+                <option>Dr</option>
+                <option>Dr(Mrs)</option>
+                <option>Rev</option>
+                <option>Venerable</option>
+                <option>Major</option>
+                <option>Captain</option>
+                <option>Prof</option>
+                <option>Master</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
               <label class="form-label">Name</label>
               <input type="text" class="form-control" formControlName="newcusname">
             </div>
@@ -519,13 +537,13 @@
               <h4 class="text-center mb-4 mt-4">Payment Type</h4>
               <div class="row">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                  <input class="btn-check" value="cash" (change)="onRadioButtonChange($event)"
-                    formControlName="paymentType" type="radio" name="btnradio" id="btnradio1" autocomplete="off"
+                  <input  type="radio" class="btn-check" value="cash" (change)="onRadioButtonChange($event)"
+                    formControlName="paymentType" name="paymentType" id="btnradio1" autocomplete="off"
                     checked>
                   <label class="btn btn-outline-primary" for="btnradio1">Cash</label>
 
-                  <input class="btn-check" value="cheque" (change)="onRadioButtonChange($event)"
-                    formControlName="paymentType" type="radio" name="btnradio" id="btnradio2" autocomplete="off">
+                  <input type="radio" class="btn-check" value="cheque" (change)="onRadioButtonChange($event)"
+                    formControlName="paymentType"name="paymentType" id="btnradio2" autocomplete="off">
                   <label class="btn btn-outline-primary" for="btnradio2">Cheque</label>
                 </div>
               </div>

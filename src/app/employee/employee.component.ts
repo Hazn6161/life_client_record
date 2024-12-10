@@ -123,13 +123,13 @@ export class EmployeeComponent implements OnInit {
 
     this.newbisform = this.formBuilder.group({
       newcuspaln: ['', Validators.required],
+      newcustitel: ['', Validators.required],
       newcusname: ['', Validators.required],
       newcusaddres: ['', Validators.required],
       newcusnic: ['', Validators.required],
       newcusdob: ['', Validators.required],
       newcusmobile: ['', Validators.required],
       paymentType: ['cash', Validators.required],
-      branch: [({ value: '', disabled: true }), Validators.required],
       chequeNo: [({ value: '', disabled: true }), Validators.required],
       bank: [({ value: '', disabled: true }), Validators.required],
       newbispaidAmount: ['', Validators.required],
@@ -530,34 +530,33 @@ export class EmployeeComponent implements OnInit {
 
 
       if (this.newbisform.get('newbispaidAmount')?.value > 0) {
-        //this.spinner.show('sp2');
+        this.spinner.show('sp2');
 
 
         let user = JSON.parse(localStorage.getItem('user') || '');
 
-        // let policyPay = {
+         let newProposal = {
 
-        //   "createdBy": user.percode,
-        //   "cusAddress": this.paymentForm.value.payAddress,
-        //   "cusName": this.paymentForm.value.policyHolder,
-        //   // "dueDate": "2024-08-29T12:30:09.321Z",
-        //   "mobile": this.paymentForm.value.mobileNo ? this.paymentForm.value.mobileNo : "",
-        //   "modifiedBy": user.percode,
-        //   "newMobile": this.paymentForm.value.mobileNo2,
-        //   "nic": this.paymentForm.value.cusNic,
-        //   // "paidDate": "2024-08-29T12:30:09.321Z",
-        //   "payment": this.paymentForm.value.paidAmount,
-        //   "policyNo": this.paymentForm.value.policyNo,
-        //   "receiptsCategory": this.paymentForm.value.receiptsCat,
-        //   //"receiptNo": "",
-        //   "status": "ACTIVE",
-        //   "statusType": "Paid",
-        //   "type": this.paymentForm.value.policyType
+          "planName": this.newbisform.value.newcuspaln,
+          "name": this.newbisform.value.newcusname,
+          "address": this.newbisform.value.newcusaddres,
+          "nic": this.newbisform.value.newcusnic,
+          "dateOfBirth": this.newbisform.value.newcusaddres,
+          "mobileNo": this.newbisform.value.newcusmobile,
+          "modifiedBy": user.percode,
+          "createdBy": user.percode,
+          "bank": this.newbisform.value.bank,
+          "title": this.newbisform.value.newcustitel,
+          "checkNo": this.newbisform.value.chequeNo,
+          "paidAmount": this.newbisform.value.newbisconfirmPaidAmount,
+          "paymentType": this.newbisform.value.paymentType,
+          "statusType": "Paid",
+          "newBusinessCode": "",
 
-        // }
+        }
 
-        // this.api.savePaymentinfo(policyPay).subscribe((data: any) => {
-        //   this.spinner.hide('sp2');
+         this.api.saveProposalinfo(newProposal).subscribe((data: any) => {
+         this.spinner.hide('sp2');
 
         Swal.fire(
           'Payment Successfully',
@@ -575,15 +574,15 @@ export class EmployeeComponent implements OnInit {
         //this.radios = "cash";
         //this.policyPayments = null;
 
-        // }, error => {
-        //   this.spinner.hide('sp2');
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: 'Server Error',
-        //     text: 'Something went wrong!',
-        //     footer: 'Please Contact Us - 0710233087'
-        //   })
-        // });
+        }, error => {
+          this.spinner.hide('sp2');
+          Swal.fire({
+            icon: 'error',
+            title: 'Server Error',
+            text: 'Something went wrong!',
+            footer: 'Please Contact Us - 0710233087'
+          })
+        });
 
       } else {
         //this.spinner.hide();
