@@ -142,6 +142,13 @@ thead {
 	/* Adjust based on your content and layout */
 }
 
+/* .table-responsive-sm {
+	display: block;
+	max-height: 327px;
+	overflow-y: auto;
+	overflow-x: hidden;
+} */
+
 .center {
 	display: block;
 	margin-left: auto;

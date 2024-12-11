@@ -67,50 +67,52 @@
   </div>
 
   <div class="mt-2">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="align-items-md-center" scope="col">Name</th>
-          <th class="align-items-md-center" scope="col">NIC</th>
-          <!-- <th scope="col">Type of Insurance</th> -->
-          <!-- <th scope="col">Family Details</th>
+    <div class="table-responsive-sm">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="align-items-md-center" scope="col">Name</th>
+            <th class="align-items-md-center" scope="col">NIC</th>
+            <!-- <th scope="col">Type of Insurance</th> -->
+            <!-- <th scope="col">Family Details</th>
         <th scope="col">Present Insurer</th> -->
-          <!-- <th scope="col">Monthly Income</th> -->
-          <!-- <th scope="col">Monthly Expences</th> -->
-          <th scope="col">Created Data</th>
-          <!-- <th scope="col">Modified Data</th> -->
-          <!-- <th scope="col">Sum Insured</th> -->
-          <!-- <th scope="col">Remark</th> -->
-          <th class="me-4" scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let emp of employeeData">
-          <td data-label="Name">{{emp.name}}</td>
-          <td data-label="NIC">{{emp.nic}}</td>
-          <!-- <td data-label="Address">{{emp.address}}</td> -->
-          <!-- <td data-label="Mobile No">{{emp.mobile}}</td>
+            <!-- <th scope="col">Monthly Income</th> -->
+            <!-- <th scope="col">Monthly Expences</th> -->
+            <th class="align-items-md-center" scope="col">Created Data</th>
+            <!-- <th scope="col">Modified Data</th> -->
+            <!-- <th scope="col">Sum Insured</th> -->
+            <!-- <th scope="col">Remark</th> -->
+            <th class="align-items-md-center"scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employeeData">
+            <td class="align-items-md-center" data-label="Name">{{emp.name}}</td>
+            <td class="align-items-md-center" data-label="NIC">{{emp.nic}}</td>
+            <!-- <td data-label="Address">{{emp.address}}</td> -->
+            <!-- <td data-label="Mobile No">{{emp.mobile}}</td>
             <td data-label="Status">{{emp.statusType}}</td> -->
-          <!-- <td data-label="Type of Insurance">{{emp.typeOfInsurance}}</td> -->
-          <!-- <td data-label="familyDetails">{{emp.familyDetails}}</td>
+            <!-- <td data-label="Type of Insurance">{{emp.typeOfInsurance}}</td> -->
+            <!-- <td data-label="familyDetails">{{emp.familyDetails}}</td>
             <td data-label="Present Insurer">{{emp.presentInsurer}}</td> -->
-          <!-- <td data-label="Monthly Income">{{emp.monthlyIncome}}</td>
+            <!-- <td data-label="Monthly Income">{{emp.monthlyIncome}}</td>
             <td data-label="Monthly Expences">{{emp.monthlyExpences}}</td> -->
-            <td data-label="Created Data">{{emp.createdDateTime}}</td>
+            <td class="align-items-md-center" data-label="Created Data">{{emp.createdDateTime}}</td>
             <!-- <td data-label="Modified Data">{{emp.modifiedDateTime}}</td> -->
-          <!-- <td data-label="Sum Insured">{{emp.sumInsured}}</td> -->
-          <!-- <td data-label="Remark">{{emp.remark}}</td> -->
+            <!-- <td data-label="Sum Insured">{{emp.sumInsured}}</td> -->
+            <!-- <td data-label="Remark">{{emp.remark}}</td> -->
 
-          <!-- <td data-label="Staus">Passed</td> -->
-          <td class="text-center">
-            <button (click)="onEdit(emp)" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">Update</button>
-            <!-- <button (click)="deleteEmployeeDetail(emp)" type="button"  class="btn btn-primary btn-sm" >Complete</button> -->
-            <!-- <button class="btn btn-danger btn-sm mx-2">Delete</button>  -->
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <!-- <td data-label="Staus">Passed</td> -->
+            <td class="align-items-md-center" class="text-center">
+              <button (click)="onEdit(emp)" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Update</button>
+              <!-- <button (click)="deleteEmployeeDetail(emp)" type="button"  class="btn btn-primary btn-sm" >Complete</button> -->
+              <!-- <button class="btn btn-danger btn-sm mx-2">Delete</button>  -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Modal Add Record-->
@@ -537,13 +539,12 @@
               <h4 class="text-center mb-4 mt-4">Payment Type</h4>
               <div class="row">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                  <input  type="radio" class="btn-check" value="cash" (change)="onRadioButtonChange($event)"
-                    formControlName="paymentType" name="paymentType" id="btnradio1" autocomplete="off"
-                    checked>
+                  <input type="radio" class="btn-check" value="Cash" (change)="onRadioButtonChange($event)"
+                    formControlName="paymentType" name="paymentType" id="btnradio1" autocomplete="off" checked>
                   <label class="btn btn-outline-primary" for="btnradio1">Cash</label>
 
                   <input type="radio" class="btn-check" value="cheque" (change)="onRadioButtonChange($event)"
-                    formControlName="paymentType"name="paymentType" id="btnradio2" autocomplete="off">
+                    formControlName="paymentType" name="paymentType" id="btnradio2" autocomplete="off">
                   <label class="btn btn-outline-primary" for="btnradio2">Cheque</label>
                 </div>
               </div>
@@ -560,21 +561,21 @@
               </div>
               <div class="col mb-3">
                 <label class="col-form-label">Cheque No</label>
-                  <input type="tel" class="form-control" formControlName="chequeNo">
+                <input type="tel" class="form-control" formControlName="chequeNo">
               </div>
             </div>
             <div class="row">
               <div class="col mb-3">
-              <label class="form-label">Paid Amount</label>
-              <input type="tel" class="form-control" formControlName="newbispaidAmount">
+                <label class="form-label">Paid Amount</label>
+                <input type="tel" class="form-control" formControlName="newbispaidAmount">
+              </div>
+
+              <div class="col mb-3">
+                <label class="form-label">Confirm Paid Amount</label>
+                <input type="tel" class="form-control" formControlName="newbisconfirmPaidAmount">
+              </div>
             </div>
 
-            <div class="col mb-3">
-              <label class="form-label">Confirm Paid Amount</label>
-              <input type="tel" class="form-control" formControlName="newbisconfirmPaidAmount">
-            </div>
-            </div>
-            
           </form>
 
         </div>
@@ -623,7 +624,7 @@
             </div>
             <div class="table-responsive" style="width:100%;">
               <h4 class="text-center">Collection Summary</h4>
-              <table class="table table-responsive-sm" id="RecipeIngredientTable2">
+              <table class="table table-responsive-sm table-striped" id="RecipeIngredientTable2">
                 <thead>
                   <tr>
                     <th scope="col">Policy No</th>

@@ -38,7 +38,7 @@ export class EmployeeComponent implements OnInit {
   chequeNo: any;
   branch: any;
   bank: any;
-  radios = "cash";
+  radios = "Cash";
   plandata!: any;
   bankdetails!: any;
 
@@ -129,7 +129,7 @@ export class EmployeeComponent implements OnInit {
       newcusnic: ['', Validators.required],
       newcusdob: ['', Validators.required],
       newcusmobile: ['', Validators.required],
-      paymentType: ['cash', Validators.required],
+      paymentType: ['Cash', Validators.required],
       chequeNo: [({ value: '', disabled: true }), Validators.required],
       bank: [({ value: '', disabled: true }), Validators.required],
       newbispaidAmount: ['', Validators.required],
@@ -567,7 +567,7 @@ export class EmployeeComponent implements OnInit {
         let ref = document.getElementById('cancel');
         ref?.click();
         this.newbisform.reset();
-        this.newbisform.controls['paymentType'].setValue('cash');
+        this.newbisform.controls['paymentType'].setValue('Cash');
         this.newbisform.controls['bank'].disable();
         this.newbisform.controls['chequeNo'].disable();
         // this.newbisform.reset();
@@ -608,7 +608,7 @@ export class EmployeeComponent implements OnInit {
 
 
   onRadioButtonChange(event: any) {
-    const isCashSelected = event.target.value === 'cash';
+    const isCashSelected = event.target.value === 'Cash';
     if (isCashSelected) {
       this.newbisform.controls['bank'].disable();
       this.newbisform.controls['chequeNo'].disable();
@@ -647,7 +647,7 @@ export class EmployeeComponent implements OnInit {
   clearnewbisForms() {
 
     this.newbisform.reset();
-    this.newbisform.controls['paymentType'].setValue('cash');
+    this.newbisform.controls['paymentType'].setValue('Cash');
     this.newbisform.controls['bank'].disable();
     this.newbisform.controls['chequeNo'].disable();
     //this.collctionSums = null;
