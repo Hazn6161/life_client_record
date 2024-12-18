@@ -513,6 +513,7 @@ export class EmployeeComponent implements OnInit {
 
   addNewbusiness() {
 
+
     if (!(this.newbisform.get('newbispaidAmount')?.value == this.newbisform.get('newbisconfirmPaidAmount')?.value)) {
       Swal.fire({
         icon: 'error',
@@ -529,6 +530,48 @@ export class EmployeeComponent implements OnInit {
     if (this.newbisform.get('newcusmobile')?.value.match(/\d/g).length === 10) {
 
 
+    const nicValue = this.newbisform.get('newcusnic')?.value;
+    const oldNICRegex = /^\d{9}[vVxX]$/;  // Regex for old NIC format
+    const newNICRegex = /^\d{12}$/;    // Regex for new NIC format
+
+    if (!oldNICRegex.test(nicValue) && !newNICRegex.test(nicValue)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid NIC format',
+        text: 'Please check the NIC number!'
+      });
+      return;
+    }
+
+    const dobValue = this.newbisform.get('newcusdob')?.value;
+      const dobRegex = /^\d{4}-\d{2}-\d{2}$/; // Ensure date format is YYYY-MM-DD
+      if (!dobRegex.test(dobValue)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Date of Birth format',
+          text: 'Please enter a valid Date of Birth in YYYY-MM-DD format!'
+        });
+        return;
+      }
+
+      // Optional: Check if the age is realistic (e.g., not younger than 18 and not older than 100)
+      const today = new Date();
+      const birthDate = new Date(dobValue);
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const month = today.getMonth() - birthDate.getMonth();
+      if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {age;// Adjust age if birthday hasn't passed yet this year
+      }
+
+      if (age < 18 || age > 100) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Age',
+          text: 'The person should be between 18 and 100 years old!'
+        });
+        return;
+      }
+
+
       if (this.newbisform.get('newbispaidAmount')?.value > 0) {
         this.spinner.show('sp2');
 
@@ -541,7 +584,7 @@ export class EmployeeComponent implements OnInit {
           "name": this.newbisform.value.newcusname,
           "address": this.newbisform.value.newcusaddres,
           "nic": this.newbisform.value.newcusnic,
-          "dateOfBirth": this.newbisform.value.newcusaddres,
+          "dateOfBirth": this.newbisform.value.newcusdob,
           "mobileNo": this.newbisform.value.newcusmobile,
           "modifiedBy": user.percode,
           "createdBy": user.percode,
@@ -604,6 +647,7 @@ export class EmployeeComponent implements OnInit {
         // footer: '<a href="">Why do I have this issue?</a>'
       })
     }
+    
   }
 
 
