@@ -82,7 +82,7 @@
             <!-- <th scope="col">Modified Data</th> -->
             <!-- <th scope="col">Sum Insured</th> -->
             <!-- <th scope="col">Remark</th> -->
-            <th class="align-items-md-center"scope="col">Action</th>
+            <th class="align-items-md-center" scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -494,6 +494,26 @@
             </div>
 
             <div class="mb-3">
+              <label class="form-label">Term</label>
+              <select class="form-select" name="newcustitel" formControlName="newcusterm">
+                <option value="" selected disabled>Please select</option>
+                <option>3 Years</option>
+                <option>4 Years</option>
+                <option>5 Years</option>
+                <option>6 Years</option>
+                <option>7 Years</option>
+                <option>8 Years</option>
+                <option>9 Years</option>
+                <option>10 Years</option>
+                <option>11 Years</option>
+                <option>12 Years</option>
+                <option>13 Years</option>
+                <option>14 Years</option>
+                <option>15 Years</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
               <label class="form-label">Titel</label>
               <select class="form-select" name="newcustitel" formControlName="newcustitel">
                 <option value="" selected disabled>Please select</option>
@@ -549,19 +569,23 @@
                 </div>
               </div>
             </div>
+            <div class="mb-3">
+              <label class="col-form-label">Bank</label>
+              <select class="form-select" name="bank" formControlName="bank">
+                <option value="" selected disabled>Please select</option>
+                <option *ngFor="let bank of bankdetails">
+                  {{bank.branchCodetotal}}
+                </option>
+              </select>
+            </div>
             <div class="row">
-              <div class="col-8 mb-3">
-                <label class="col-form-label">Bank</label>
-                <select class="form-select" name="bank" formControlName="bank">
-                  <option value="" selected disabled>Please select</option>
-                  <option *ngFor="let bank of bankdetails">
-                    {{bank.branchCodetotal}}
-                  </option>
-                </select>
-              </div>
               <div class="col mb-3">
                 <label class="col-form-label">Cheque No</label>
                 <input type="tel" class="form-control" formControlName="chequeNo">
+              </div>
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque Date</label>
+                <input type="date" class="form-control" formControlName="chequedate">
               </div>
             </div>
             <div class="row">

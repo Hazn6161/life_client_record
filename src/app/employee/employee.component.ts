@@ -133,7 +133,9 @@ export class EmployeeComponent implements OnInit {
       chequeNo: [({ value: '', disabled: true }), Validators.required],
       bank: [({ value: '', disabled: true }), Validators.required],
       newbispaidAmount: ['', Validators.required],
-      newbisconfirmPaidAmount: ['', Validators.required]
+      newbisconfirmPaidAmount: ['', Validators.required],
+      newcusterm:['', Validators.required],
+      chequedate:[({ value: '', disabled: true }), Validators.required]
     });
 
 
@@ -589,6 +591,8 @@ export class EmployeeComponent implements OnInit {
           "modifiedBy": user.percode,
           "createdBy": user.percode,
           "bank": this.newbisform.value.bank,
+          "checkDate": this.newbisform.value.chequedate,
+          "term": this.newbisform.value.newcusterm,
           "title": this.newbisform.value.newcustitel,
           "checkNo": this.newbisform.value.chequeNo,
           "paidAmount": this.newbisform.value.newbisconfirmPaidAmount,
@@ -613,6 +617,7 @@ export class EmployeeComponent implements OnInit {
         this.newbisform.controls['paymentType'].setValue('Cash');
         this.newbisform.controls['bank'].disable();
         this.newbisform.controls['chequeNo'].disable();
+        this.newbisform.controls['chequedate'].disable();
         // this.newbisform.reset();
         //this.radios = "cash";
         //this.policyPayments = null;
@@ -656,11 +661,14 @@ export class EmployeeComponent implements OnInit {
     if (isCashSelected) {
       this.newbisform.controls['bank'].disable();
       this.newbisform.controls['chequeNo'].disable();
+      this.newbisform.controls['chequedate'].disable();
       this.newbisform.controls['bank'].setValue('');  // Clear the value
-      this.newbisform.controls['chequeNo'].setValue(''); // Clear the value
+      this.newbisform.controls['chequeNo'].setValue('');
+      this.newbisform.controls['chequedate'].setValue(''); // Clear the value
     } else {
       this.newbisform.controls['bank'].enable();
       this.newbisform.controls['chequeNo'].enable();
+      this.newbisform.controls['chequedate'].enable();
     }
   }
   clearForms() {
@@ -694,6 +702,7 @@ export class EmployeeComponent implements OnInit {
     this.newbisform.controls['paymentType'].setValue('Cash');
     this.newbisform.controls['bank'].disable();
     this.newbisform.controls['chequeNo'].disable();
+    this.newbisform.controls['chequedate'].disable();
     //this.collctionSums = null;
     //this.newbisform.reset();
 
