@@ -14,17 +14,13 @@
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"> </script>
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"> </script>
 
-  <script>
-    $('#example').DataTable();
-  </script>
-
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
 </header>
 
 <body class="body">
-  <nav class="navbar mb-3">
+  <nav class="navbar mb-4">
     <div class="container-fluid">
       <div class="pull-right mb-2">
         <h6 style="color: white; margin-bottom: 0px; font-size: small;">Code - {{Percode}}</h6>
@@ -55,7 +51,7 @@
     </div>
   </nav>
 
-  <div class="mb-2">
+  <div class="mb-4 m">
     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary me-2 mb-2"
       (click)="addClick()"><i class="bi bi-file-plus me-2"></i>Add a Record</button>
     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-success me-2 mb-2"
@@ -67,7 +63,7 @@
   </div>
 
   <div class="mt-2">
-    <div class="table-responsive-sm">
+    <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -236,6 +232,7 @@
             Update
           </button>
         </div>
+        <p class="text-center text-black mt-2 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
       </div>
     </div>
   </div>
@@ -351,6 +348,7 @@
             Save
           </button>
         </div>
+        <p class="text-center text-black mt-2 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
       </div>
     </div>
   </div>
@@ -465,6 +463,7 @@
             Close
           </button>
         </div>
+        <p class="text-center text-black me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a> All Rights Reserved. made by Coop Software Development Unit</p>
       </div>
     </div>
   </div>
@@ -615,6 +614,7 @@
             Save
           </button>
         </div>
+        <p class="text-center text-black mt-2 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
       </div>
     </div>
   </div>
@@ -684,6 +684,7 @@
             Close
           </button>
         </div>
+        <p class="text-center text-black me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
       </div>
     </div>
   </div>
@@ -720,6 +721,7 @@
                     <button class="btn btn-success" (click)="changepassword()">Change
                       Password</button>
                   </div>
+                  <p class="text-center text-black mt-5 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
                 </form>
               </div><!--/col-sm-6-->
             </div><!--/row-->
@@ -743,7 +745,11 @@
       </div>
     </div>
   </div>
-
+  
+  <footer>
+    <p class="text-black mt-2 me-2" style="text-align: center; font-size:10px;">Copyright © 2024 <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
+  </footer>
+  
 </body>
 
 </html>

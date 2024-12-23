@@ -128,9 +128,9 @@ thead {
 	/* Optional: Helps in equal column width */
 }
 
-.table-responsive .table tbody {
+.table tbody {
 	display: block;
-	max-height: 225px;
+	max-height: 296px;
 	/* Adjust this value to your needs */
 	overflow-y: auto;
 	overflow-x: hidden;
