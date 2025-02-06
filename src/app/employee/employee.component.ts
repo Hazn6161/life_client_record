@@ -135,6 +135,7 @@ export class EmployeeComponent implements OnInit {
       newbispaidAmount: ['', Validators.required],
       newbisconfirmPaidAmount: ['', Validators.required],
       newcusterm:['', Validators.required],
+      newcuscategry:['', Validators.required],
       chequedate:[({ value: '', disabled: true }), Validators.required]
     });
 
