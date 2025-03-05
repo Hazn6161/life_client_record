@@ -38,7 +38,9 @@ export class EmployeeComponent implements OnInit {
   chequeNo: any;
   branch: any;
   bank: any;
-  radios = "Cash";
+  chequeNo1: any;
+  branch1: any;
+  bank1: any;
   plandata!: any;
   bankdetails!: any;
 
@@ -107,6 +109,10 @@ export class EmployeeComponent implements OnInit {
       policyStatus: ['', Validators.required],
       mobileNo: [' ',],
       mobileNo2: ['', Validators.required],
+      paymentType1: ['Cash', Validators.required],
+      chequeNo1: [({ value: '', disabled: true }), Validators.required],
+      bank1: [({ value: '', disabled: true }), Validators.required],
+      chequedate1:[({ value: '', disabled: true }), Validators.required],
       paidAmount: ['', Validators.required],
       confirmpaidAmount: ['', Validators.required],
       receiptsCat: ['', Validators.required]
@@ -435,10 +441,15 @@ export class EmployeeComponent implements OnInit {
           "payment": this.paymentForm.value.paidAmount,
           "policyNo": this.paymentForm.value.policyNo,
           "receiptsCategory": this.paymentForm.value.receiptsCat,
+          "paymentType":this.paymentForm.value.paymentType1,
+          "bank": this.paymentForm.value.bank1,
+          "checkDate": this.paymentForm.value.chequedate1,
+          "checkNo" : this.paymentForm.value.chequeNo1,
+
           //"receiptNo": "",
           "status": "ACTIVE",
           "statusType": "Paid",
-          "type": this.paymentForm.value.policyType
+          "type": this.paymentForm.value.policyType,
 
         }
 
@@ -453,6 +464,10 @@ export class EmployeeComponent implements OnInit {
           let ref = document.getElementById('cancel');
           ref?.click();
           this.paymentForm.reset();
+          this.paymentForm.controls['paymentType1'].setValue('Cash');
+          this.paymentForm.controls['bank1'].disable();
+          this.paymentForm.controls['chequeNo1'].disable();
+          this.paymentForm.controls['chequedate1'].disable();
           this.policyPayments = null;
 
         }, error => {
@@ -672,10 +687,39 @@ export class EmployeeComponent implements OnInit {
       this.newbisform.controls['chequedate'].enable();
     }
   }
+
+  onRadioButtonChange_pay(event: any) {
+    const isCashSelected = event.target.value === 'Cash';
+    if (isCashSelected) {
+      this.paymentForm.controls['bank1'].disable();
+      this.paymentForm.controls['chequeNo1'].disable();
+      this.paymentForm.controls['chequedate1'].disable();
+      this.paymentForm.controls['bank1'].setValue('');  // Clear the value
+      this.paymentForm.controls['chequeNo1'].setValue('');
+      this.paymentForm.controls['chequedate1'].setValue(''); // Clear the value
+    } else {
+      this.paymentForm.controls['bank1'].enable();
+      this.paymentForm.controls['chequeNo1'].enable();
+      this.paymentForm.controls['chequedate1'].enable();
+    }
+  }
+
   clearForms() {
 
     this.paymentForm.reset();
     this.policyPayments = null;
+    this.paymentForm.controls['paymentType1'].setValue('Cash');
+    this.paymentForm.controls['bank1'].disable();
+    this.paymentForm.controls['chequeNo1'].disable();
+    this.paymentForm.controls['chequedate1'].disable();
+    //this.collctionSums = null;
+    //this.newbisform.reset();
+
+    Swal.fire(
+      'Record Clear Done',
+      'Well Done !',
+      'success'
+    )
 
     Swal.fire(
       'Record Clear Done',
@@ -714,6 +758,7 @@ export class EmployeeComponent implements OnInit {
     )
 
   }
+  
 
   restrictZero(event: any) {
     if (event.target.value.length === 0 && event.key === "0") {

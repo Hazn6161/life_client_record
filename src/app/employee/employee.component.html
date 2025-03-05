@@ -330,14 +330,49 @@
               <!-- <input type="number" class="form-control" formControlName="mobileNo2"> -->
               <input type="tel" class="form-control" formControlName="mobileNo2" maxlength="10">
             </div>
+            <div class="mt-4 mx-1 mb-4">
+              <h4 class="text-center mb-4 mt-4">Payment Type</h4>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" value="Cash" (change)="onRadioButtonChange_pay($event)"
+                    formControlName="paymentType1" name="paymentType1" id="btnradio" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="btnradio">Cash</label>
+
+                  <input type="radio" class="btn-check" value="cheque" (change)="onRadioButtonChange_pay($event)"
+                    formControlName="paymentType1" name="paymentType1" id="btnradio3" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btnradio3">Cheque</label>
+                </div>
+              </div>
+            </div>
             <div class="mb-3">
+              <label class="col-form-label">Bank</label>
+              <select class="form-select" name="bank1" formControlName="bank1">
+                <option value="" selected disabled>Please select</option>
+                <option *ngFor="let bank of bankdetails">
+                  {{bank.branchCodetotal}}
+                </option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque No</label>
+                <input type="tel" class="form-control" formControlName="chequeNo1">
+              </div>
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque Date</label>
+                <input type="date" class="form-control" formControlName="chequedate1">
+              </div>
+            </div>
+          <div class="row">
+            <div class="col mb-3">
               <label class="form-label">Paid Amount</label>
               <input type="tel" class="form-control" formControlName="paidAmount">
             </div>
-            <div class="mb-3">
+            <div class="col mb-3">
               <label class="form-label">Confirm Paid Amount</label>
               <input type="tel" class="form-control" id="confirmpaidAmount" formControlName="confirmpaidAmount">
             </div>
+          </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -630,7 +665,6 @@
                 <label class="form-label">Paid Amount</label>
                 <input type="tel" class="form-control" formControlName="newbispaidAmount">
               </div>
-
               <div class="col mb-3">
                 <label class="form-label">Confirm Paid Amount</label>
                 <input type="tel" class="form-control" formControlName="newbisconfirmPaidAmount">
