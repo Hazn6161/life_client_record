@@ -615,6 +615,7 @@ export class EmployeeComponent implements OnInit {
           "paymentType": this.newbisform.value.paymentType,
           "statusType": "Paid",
           "newBusinessCode": "",
+          "category":this.newbisform.value.newcuscategry,
 
         }
 
