@@ -122,7 +122,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title fw-bolder" id="exampleModalLabel"><i class="bi bi-file-plus me-2"></i>Add a record</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
         </div>
         <div class="modal-body">
           <form [formGroup]="formValue">
@@ -248,7 +251,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title fw-bolder"><i class="bi-coin me-3"></i>Payment Details</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
         </div>
         <div class="modal-body">
           <form [formGroup]="paymentForm">
@@ -399,7 +405,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title fw-bolder" id="contactusModallLabel"><i class="bi-telephone me-3"></i>Contact Us</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
         </div>
 
         <section class="bg-light py-3 py-md-5">
@@ -514,7 +522,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title fw-bolder" id="exampleModalLabe3"><i class="bi bi-journals me-3"></i>New Business</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
         </div>
         <div class="modal-body">
           <!-- <div class="">
@@ -699,7 +709,9 @@
         <div class="modal-header">
           <h5 class="modal-title fw-bolder" id="exampleModal4"><i class="bi bi-collection me-3"></i>My Collections
             Summary</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+              X
+            </button>
         </div>
         <div class="modal-body">
           <!-- <div class="">
@@ -768,7 +780,9 @@
       <div class="modal-content ">
         <div class="modal-header">
           <h4 class="modal-title fw-bolder"><i class="bi-person-lock me-3"></i>Change Password</h4>
-          <button type="button" #myModalClose class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
         </div>
         <div class="modal-body">
           <form [formGroup]="paymentForm">
