@@ -51,9 +51,9 @@ export class LoginComponent implements OnInit {
     const startDate3 = new Date(2025, 11, 1, 0, 0, 0);  // April 11, 2025, 12:00 AM
     const endDate3 = new Date(2025, 11, 31, 23, 59, 59);  // April 30, 2025, 11:59 PM
 
-    console.log("Current Time:", now);
-    console.log("Start Date:", startDate,startDate2,startDate3);
-    console.log("End Date:", endDate,endDate2,endDate3);
+    // console.log("Current Time:", now);
+    // console.log("Start Date:", startDate,startDate2,startDate3);
+    // console.log("End Date:", endDate,endDate2,endDate3);
 
     // Change image based on the date range
     if (now >= startDate && now <= endDate) {
