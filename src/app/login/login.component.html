@@ -58,9 +58,20 @@
 
                   <!-- <img class="imgs mb-4" src="https://i.ibb.co/NSpgrS1/life.png"> -->
                   <!-- <img class="imgs mb-4 mt-4" src="https://i.ibb.co/RCJJjJs/Life-Chrismes.png"> -->
-                  <img class="imgs" src="https://i.ibb.co/bMYwZqLm/Life-new-year.png">
+                  <!-- <img class="imgs" src="https://i.ibb.co/zVxLgBg3/Life-new-year.png"> -->
 
-                  <h1 class="fw-bold text-uppercase mb-4"
+                  <div class="container">
+                    <div id="dateTime" class="mt-2 mb-2 time">Current Time : {{ currentTime }}</div>
+                
+                    <!-- Dynamically display the image based on the date range -->
+                    <img class="imgs" [src]="imageSrc" alt="Dynamic Image">
+                
+                    <!-- Message based on which image is displayed -->
+                    <!-- <p>{{ imageSrc.includes('Life-new-year.png') ? 'New Year image is visible.' : 'Default image is displayed.' }}</p> -->
+                </div>
+                
+                  
+                  <h1 class="fw-bold text-uppercase"
                     style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 45px;">
                     EZY Advisor</h1>
                   <p class="text-black mb-4">Enthusiasm - Zest - Yield</p>

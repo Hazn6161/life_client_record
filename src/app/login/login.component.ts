@@ -12,10 +12,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  currentTime: string = '';
+  imageSrc: string = ''; // Holds the image URL 
+
+
   public loginform!: UntypedFormGroup;
 
-  constructor(private formBuilder: UntypedFormBuilder, 
-    private http: HttpClient, 
+  constructor(private formBuilder: UntypedFormBuilder,
+    private http: HttpClient,
     private router: Router,
     private apiService: ApiService,
     private spinner: NgxSpinnerService) {
@@ -28,6 +32,39 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
+    this.checkDateRange();
+    setInterval(() => this.checkDateRange(), 1000); // Update every second
+
+  }
+
+  checkDateRange(): void {
+    const now = new Date();
+    this.currentTime = now.toLocaleString();
+
+    // Set custom date range (YYYY, MM (0-based), DD, HH, MM, SS)
+    const startDate = new Date(2025, 3, 1, 0, 0, 0); // April 1, 2025, 10:00 AM
+    const endDate = new Date(2025, 3, 30, 23, 59, 59);  // April 10, 2025, 6:00 PM
+
+    const startDate2 = new Date(2025, 4, 1, 0, 0, 0);  // April 11, 2025, 12:00 AM
+    const endDate2 = new Date(2025, 4, 31, 23, 59, 59);  // April 30, 2025, 11:59 PM
+
+    const startDate3 = new Date(2025, 11, 1, 0, 0, 0);  // April 11, 2025, 12:00 AM
+    const endDate3 = new Date(2025, 11, 31, 23, 59, 59);  // April 30, 2025, 11:59 PM
+
+    console.log("Current Time:", now);
+    console.log("Start Date:", startDate,startDate2,startDate3);
+    console.log("End Date:", endDate,endDate2,endDate3);
+
+    // Change image based on the date range
+    if (now >= startDate && now <= endDate) {
+      this.imageSrc = "https://i.ibb.co/W48jy5vZ/New-year.png"; // Image for the valid date range
+    } else if (now >= startDate2 && now <= endDate2) {
+      this.imageSrc = "https://i.ibb.co/CKMPthVH/Vesak.png"; // Second image for another time frame
+    } else if (now >= startDate3 && now <= endDate3) {
+      this.imageSrc = "https://i.ibb.co/x9y9tD7/Life-Chrismes.png"; // Second image for another time frame
+    } else {
+      this.imageSrc = "https://i.ibb.co/NSpgrS1/life.png"; // Default image outside the range
+    }
   }
 
   login(): void {
