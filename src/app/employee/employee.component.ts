@@ -102,6 +102,7 @@ export class EmployeeComponent implements OnInit {
     this.paymentForm = this.formBuilder.group({
 
       policyNo: ['', Validators.required],
+      policyBranch: ['', Validators.required],
       policyHolder: ['', Validators.required],
       payAddress: ['', Validators.required],
       cusNic: ['',],
@@ -330,6 +331,7 @@ export class EmployeeComponent implements OnInit {
       this.spinner.hide('sp1');
 
       if (res.cusName) {
+        this.paymentForm.controls['policyBranch'].setValue(res.location);
         this.paymentForm.controls['policyHolder'].setValue(res.cusName);
         this.paymentForm.controls['payAddress'].setValue(res.cusAddress);
         this.paymentForm.controls['cusNic'].setValue(res.nic);
@@ -431,6 +433,7 @@ export class EmployeeComponent implements OnInit {
 
           "createdBy": user.percode,
           "cusAddress": this.paymentForm.value.payAddress,
+          //"location": this.paymentForm.value.policyBranch,
           "cusName": this.paymentForm.value.policyHolder,
           // "dueDate": "2024-08-29T12:30:09.321Z",
           "mobile": this.paymentForm.value.mobileNo ? this.paymentForm.value.mobileNo : "",

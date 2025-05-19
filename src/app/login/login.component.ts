@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit {
     const startDate = new Date(2025, 3, 1, 0, 0, 0); // April 1, 2025, 10:00 AM
     const endDate = new Date(2025, 3, 30, 23, 59, 59);  // April 10, 2025, 6:00 PM
 
-    const startDate2 = new Date(2025, 4, 1, 0, 0, 0);  // April 11, 2025, 12:00 AM
-    const endDate2 = new Date(2025, 4, 31, 23, 59, 59);  // April 30, 2025, 11:59 PM
+    const startDate2 = new Date(2025, 4, 1, 0, 0, 0);  //May 1, 2025, 12:00 AM
+    const endDate2 = new Date(2025, 4, 31, 23, 59, 59);  //May 31, 2025, 11:59 PM
 
-    const startDate3 = new Date(2025, 11, 1, 0, 0, 0);  // April 11, 2025, 12:00 AM
-    const endDate3 = new Date(2025, 11, 31, 23, 59, 59);  // April 30, 2025, 11:59 PM
+    const startDate3 = new Date(2025, 11, 1, 0, 0, 0);  //December 1, 2025, 12:00 AM
+    const endDate3 = new Date(2025, 11, 31, 23, 59, 59);  //December 31, 2025, 11:59 PM
 
     // console.log("Current Time:", now);
     // console.log("Start Date:", startDate,startDate2,startDate3);
